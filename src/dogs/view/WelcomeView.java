@@ -70,7 +70,7 @@ public class WelcomeView extends JFrame implements IView {   // Configurer Eclip
 		welcomePanel.add(welcomePicture, BorderLayout.CENTER);   // CENTER -> par défaut
 	}
 
-	private void setUpActionPanel() {
+	private void setUpActionPanel(JPanel welcomePanel) {
 	}
 
 
