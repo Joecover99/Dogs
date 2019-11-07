@@ -5,6 +5,7 @@ import java.awt.Dimension;
 import java.awt.Point;
 
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -21,6 +22,7 @@ public class WelcomeView extends JFrame implements IView {   // Configurer Eclip
 	private static final String WELCOME_PICTURE = "../resource/dog.jpg";
 
 	private static final Dimension DEFAULT_SIZE = new Dimension(475, 530);
+	private static final String ADD_DOG_MESSAGE = "Add Dog";
 	
 	private IWelcomeController controller;		// Pas encore utilisé dans cette version...
 	
@@ -56,7 +58,8 @@ public class WelcomeView extends JFrame implements IView {   // Configurer Eclip
 
 		welcomePanel.setLayout(new BorderLayout());   // Strategy pattern: le gestionnaire de mise en forme		
 		addWelcomePicture(welcomePanel);		
-		addWelcomeMessage(welcomePanel);		
+		addWelcomeMessage(welcomePanel);	
+		addDogButton(welcomePanel);
 	}
 
 	private void addWelcomeMessage(JPanel welcomePanel) {
@@ -70,7 +73,16 @@ public class WelcomeView extends JFrame implements IView {   // Configurer Eclip
 		welcomePanel.add(welcomePicture, BorderLayout.CENTER);   // CENTER -> par défaut
 	}
 
-	private void setUpActionPanel(JPanel welcomePanel) {
+	private void addDogButton(JPanel addDogPanel){
+		JButton addDogButton = new JButton();
+		JLabel buttonMessage = new JLabel(ADD_DOG_MESSAGE, SwingConstants.CENTER);
+		this.add(addDogButton, BorderLayout.SOUTH);
+		this.add(buttonMessage);
+	}
+	
+	private void setUpActionPanel() {
+		JPanel addDog = new JPanel();
+		this.add(addDog);
 	}
 
 
