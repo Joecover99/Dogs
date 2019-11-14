@@ -1,20 +1,28 @@
 package dogs.view;
 
 import java.awt.BorderLayout;
+import java.awt.Button;
 import java.awt.Dimension;
+import java.awt.GridLayout;
 import java.awt.Point;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
+import dogDTO.DogDTO;
 import dogs.controller.IWelcomeController;
 import util.image.ImageUtil;
 
-public class WelcomeView extends JFrame implements IView {   // Configurer Eclipse pour ignorer les avertissements sur serial Id
+public class WelcomeView extends JFrame implements IView, ActionListener {   // Configurer Eclipse pour ignorer les avertissements sur serial Id
 	
 	private static final String VIEW_TITLE = "Nos amis les chiens";
 	private static final String WELCOME_MESSAGE = "Bienvenue !";
@@ -22,7 +30,11 @@ public class WelcomeView extends JFrame implements IView {   // Configurer Eclip
 	private static final String WELCOME_PICTURE = "../resource/dog.jpg";
 
 	private static final Dimension DEFAULT_SIZE = new Dimension(475, 530);
-	private static final String ADD_DOG_MESSAGE = "Add Dog";
+	private static final String ADD_DOG_MESSAGE = "Insert a Dog";
+	private static final String ACTION_ADD_DOG = "Add Dog";
+	private static final String LABEL_NAME = "name";
+	private static final String LABEL_BREED = "breed";
+	
 	
 	private IWelcomeController controller;		// Pas encore utilisé dans cette version...
 	
@@ -59,7 +71,7 @@ public class WelcomeView extends JFrame implements IView {   // Configurer Eclip
 		welcomePanel.setLayout(new BorderLayout());   // Strategy pattern: le gestionnaire de mise en forme		
 		addWelcomePicture(welcomePanel);		
 		addWelcomeMessage(welcomePanel);	
-		addDogButton(welcomePanel);
+		addDogButton(welcomePanel, ADD_DOG_MESSAGE, ACTION_ADD_DOG);
 	}
 
 	private void addWelcomeMessage(JPanel welcomePanel) {
@@ -72,18 +84,54 @@ public class WelcomeView extends JFrame implements IView {   // Configurer Eclip
 		JLabel welcomePicture = new JLabel(image);		
 		welcomePanel.add(welcomePicture, BorderLayout.CENTER);   // CENTER -> par défaut
 	}
-
-	private void addDogButton(JPanel addDogPanel){
-		JButton addDogButton = new JButton();
-		JLabel buttonMessage = new JLabel(ADD_DOG_MESSAGE, SwingConstants.CENTER);
-		this.add(addDogButton, BorderLayout.SOUTH);
-		this.add(buttonMessage);
+	
+	private void addTextField(JPanel panel, String labelText, JTextField textField) {
+		panel.add(new JLabel(labelText));
+		panel.add(textField);
+	}
+	
+	private void setUpInputDataPanel() {
+		JPanel inputDataPanel = new JPanel();
+		this.add(inputDataPanel);
+		inputDataPanel.setLayout(new GridLayout(0,2));
+		
+		this.addTextField(inputDataPanel, LABEL_NAME ,this.name);
+		this.addTextField(inputDataPanel, LABEL_BREED ,this.breed);
 	}
 	
 	private void setUpActionPanel() {
-		JPanel addDog = new JPanel();
-		this.add(addDog);
+		JPanel actionPanel = new JPanel();
+		this.add(actionPanel, BorderLayout.SOUTH);
+		
+		addDogButton(actionPanel, ADD_DOG_MESSAGE, ACTION_ADD_DOG);
 	}
+	
+	private void addDogButton(JPanel actionPanel, String buttonText, String buttonAction){
+		JButton addDogButton = new JButton(buttonText);
+		addDogButton.setActionCommand(buttonAction);
+		addDogButton.addActionListener(this);
+		actionPanel.add(addDogButton);
+	}
+	
+	private void actionAddDogAsked() {
+		this.controller.wantToCreateDog();
+	}
+	
+	private void createDog() {
+		System.out.println("ICI");
+		DogDTO dogCreate = new DogDTO(this.name, this.breed);
+		this.controller.add(dogToCreate);
+		JOptionPane.showMessageDialog(this.THAT);
+		this.dispose();
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		if(e.getActionCommand().equals(ACTION_ADD_DOG)) {
+			this.actionAddDogAsked();
+		}
+	}
+	
 
 
 }
