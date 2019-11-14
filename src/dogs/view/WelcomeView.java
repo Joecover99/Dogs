@@ -2,6 +2,7 @@ package dogs.view;
 
 import java.awt.BorderLayout;
 import java.awt.Button;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.Point;
@@ -19,6 +20,7 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
 import dogDTO.DogDTO;
+import dogDTO.DogDTOForCreate;
 import dogs.controller.IWelcomeController;
 import util.image.ImageUtil;
 
@@ -37,6 +39,8 @@ public class WelcomeView extends JFrame implements IView, ActionListener {   // 
 	
 	
 	private IWelcomeController controller;		// Pas encore utilisé dans cette version...
+	private Component name;
+	private Component breed;
 	
 	public WelcomeView(IWelcomeController controller) {
 		super(VIEW_TITLE);
@@ -85,9 +89,9 @@ public class WelcomeView extends JFrame implements IView, ActionListener {   // 
 		welcomePanel.add(welcomePicture, BorderLayout.CENTER);   // CENTER -> par défaut
 	}
 	
-	private void addTextField(JPanel panel, String labelText, JTextField textField) {
+	private void addTextField(JPanel panel, String labelText, Component name) {
 		panel.add(new JLabel(labelText));
-		panel.add(textField);
+		panel.add(name);
 	}
 	
 	private void setUpInputDataPanel() {
@@ -119,9 +123,9 @@ public class WelcomeView extends JFrame implements IView, ActionListener {   // 
 	
 	private void createDog() {
 		System.out.println("ICI");
-		DogDTO dogCreate = new DogDTO(this.name, this.breed);
+		DogDTOForCreate dogToCreate = new DogDTOForCreate(this.name, this.breed);
 		this.controller.add(dogToCreate);
-		JOptionPane.showMessageDialog(this.THAT);
+		//JOptionPane.showMessageDialog(this.THAT);
 		this.dispose();
 	}
 

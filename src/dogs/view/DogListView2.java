@@ -1,24 +1,26 @@
 package dogs.view;
 
-import java.awt.GridLayout;
 import java.util.Collection;
 
-import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.border.EmptyBorder;
 
+import dogDTO.DogDTOForCreate;
 import dogDTO.DogDTOForList;
 
-public class DogListView {
+public class DogListView2 implements IView{
+
 	
 	IDogController controller;
 	Collection<DogDTOForList> listOfDogs;
 
-	public DogListView(IDogController controller, Collection<DogDTOForList> dogDTOList) {
+	public DogListView2(IDogController controller, Collection<DogDTOForList> dogDTOlist) {
 		super();
 		
 		this.controller = controller;
-		this.listOfDogs = dogDTOList;
+		this.listOfDogs = dogDTOlist;
 		
 		this.initialize();
 		this.setUpComponents();
@@ -36,7 +38,7 @@ public class DogListView {
 	
 	private void setUpComponents() {
 		this.setUpDisplayDataPanel();
-		this.setUpActionPanel();
+		this.SetUpActionPanel();
 	}
 	
 	private void setUpDisplayDataPanel() {
@@ -44,20 +46,27 @@ public class DogListView {
 		displayDataPanel.setBorder(new EmptyBorder(20,20,20,20));
 		this.add(displayDataPanel);
 		
-		displayDataPanel.setLayout(new GridLayout(0,3));
+		String[] columnNames = {LABEL_ID, LABEL_NAME, LABEL_BREED};
 		
-		JLabel idLabelColum = new JLabel(LABEL_ID);
-		displayDataPanel.add(idLabelColum);
-		displayDataPanel.add(new JLabel(LABEL_NAME));
-		displayDataPanel.add(new JLabel(LABEL_BREED));
+		Object[][] data = new Object[this.listOfDogs.size()][3];
+		
+		int rowNb = 0;
 		
 		for(DogDTOForList dog:this.listOfDogs) {
-			displayDataPanel.add(new JLabel(String.valueOf(dog.id)));
+			data[rowNb][0] = String.valueOf(dog.id);
+			data[rowNb][1] = dog.name;
+			data[rowNb][2] = dog.breed;
+			rowNb++;
 		}
+		JTable table = new JTable(data, columnNames);
+		
+		JScrollPane scrollPane = new JScrollPane(table);
+		table.setFillsViewportHeight(true);
+		displayDataPanel.add(scrollPane);
 	}
 	
-	private void setUpActionPanel() {
+	private void SetUpActionPanel() {
 		
 	}
-		
+	
 }

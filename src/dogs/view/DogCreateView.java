@@ -10,6 +10,8 @@ import javax.swing.JTextField;
 public class DogCreateView implements IView {
 
 	private IDogController controller;
+	private JTextField name;
+	private JTextField breed;
 
 	public DogCreateView(IDogController controller) {
 		super();
@@ -32,7 +34,7 @@ public class DogCreateView implements IView {
 		
 	}
 	
-	private void setVisibles(boolean b) {
+	private void setVisibles() {
 		// TODO Auto-generated method stub
 		
 	}

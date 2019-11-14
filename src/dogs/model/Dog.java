@@ -1,14 +1,16 @@
 package dogs.model;
 
+import java.awt.Component;
+
 public class Dog {  // La classe est très simple ici mais il pourrait avoir des validations ou des algos plus complexes.
 	
 	public static int nextId = 1;
 	
 	private int id;
-	private String name;
-	private String breed;  // Idéalement faire une classe Breed (préférer à une enum)
+	private Component name;
+	private Component breed;  // Idéalement faire une classe Breed (préférer à une enum)
 	
-	public Dog(String name, String breed, String color, int age) {
+	public Dog(Component name, Component breed) {
 		//TODO: calculer l'id --> un no unique pour identifier un chien
 		this.id = nextId;
 		incrementNextId();
@@ -25,17 +27,17 @@ public class Dog {  // La classe est très simple ici mais il pourrait avoir des 
 		return this.id;
 	}
 	
-	public String getName() {
+	public Component getName() {
 		return name;
 	}
-	public void setName(String name) {
+	public void setName(Component name) {
 		this.name = name;
 	}
 
-	public String getBreed() {
+	public Component getBreed() {
 		return breed;
 	}
-	public void setBreed(String breed) {
+	public void setBreed(Component breed) {
 		this.breed = breed;
 	}
 
