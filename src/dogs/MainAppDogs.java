@@ -20,14 +20,13 @@ public class MainAppDogs {
 	}
 	
 	private void createControllers() {
-		IDogRepository dogRepository = new DogMemoryRepository();
 		IDogController dogController = new DogController(dogRepository);
 		
 		IWelcomeController appController = new WelcomeController(dogController);
 		appController.startApplication();
 	}
 	
-	private IDogRepository dogRepository = new DogRepository();
+	private IDogRepository dogRepository = new DogMemoryRepository();
 	
 	private void seedData() {
 		new DogDataSeeder(this.dogRepository);

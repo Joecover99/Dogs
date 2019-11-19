@@ -3,7 +3,6 @@ package dogs.controller;
 import java.util.ArrayList;
 import java.util.Collection;
 
-import dogDTO.DogDTO;
 import dogDTO.DogDTOForCreate;
 import dogDTO.DogDTOForList;
 import dogs.model.Dog;

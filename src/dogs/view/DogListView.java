@@ -11,6 +11,8 @@ import dogDTO.DogDTOForList;
 
 public class DogListView {
 	
+	public static final String LABEL_ID = null;
+	private static final String DEFAULT_MODALITY_TYPE = null;
 	IDogController controller;
 	Collection<DogDTOForList> listOfDogs;
 
@@ -25,15 +27,37 @@ public class DogListView {
 		this.pack();
 	}
 	
+	private void pack() {
+		// TODO Auto-generated method stub
+		
+	}
+
 	public void display() {
 		this.setVisible(true);
 	}
 	
+
+
 	private void initialize() {
-		this.setTitle(VIEW_TITLE);
+		this.setTitle(WelcomeView.VIEW_TITLE);
 		this.setModalityType(DEFAULT_MODALITY_TYPE);
 	}
 	
+	private void setModalityType(String defaultModalityType) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	private void setTitle(String viewTitle) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	private void setVisible(boolean b) {
+		// TODO Auto-generated method stub
+		
+	}
+
 	private void setUpComponents() {
 		this.setUpDisplayDataPanel();
 		this.setUpActionPanel();
@@ -48,14 +72,19 @@ public class DogListView {
 		
 		JLabel idLabelColum = new JLabel(LABEL_ID);
 		displayDataPanel.add(idLabelColum);
-		displayDataPanel.add(new JLabel(LABEL_NAME));
-		displayDataPanel.add(new JLabel(LABEL_BREED));
+		displayDataPanel.add(new JLabel(WelcomeView.LABEL_NAME));
+		displayDataPanel.add(new JLabel(WelcomeView.LABEL_BREED));
 		
 		for(DogDTOForList dog:this.listOfDogs) {
 			displayDataPanel.add(new JLabel(String.valueOf(dog.id)));
 		}
 	}
 	
+	private void add(JPanel displayDataPanel) {
+		// TODO Auto-generated method stub
+		
+	}
+
 	private void setUpActionPanel() {
 		
 	}

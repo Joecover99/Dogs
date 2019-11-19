@@ -9,8 +9,11 @@ public class DogDTOForList {
 	public String breed;
 	public int id;
 
-	public DogDTOForList(int id, Component name, Component breed) {
+	public DogDTOForList(int id, String name, String breed) {
 		// TODO Auto-generated constructor stub
+		this.name = name;
+		this.breed = breed;
+		this.id = id;
 	}
 
 }

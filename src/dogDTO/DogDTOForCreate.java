@@ -1,12 +1,11 @@
 package dogDTO;
 
-import java.awt.Component;
 
 public class DogDTOForCreate {
-	public final Component name;
-	public final Component breed;
+	public final String name;
+	public final String breed;
 	
-	public DogDTOForCreate(Component name, Component breed) {
+	public DogDTOForCreate(String name, String breed) {
 		this.name = name;
 		this.breed = breed;
 	}

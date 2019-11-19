@@ -10,7 +10,7 @@ import dogs.view.IView;
 
 public class DogMemoryRepository implements IDogRepository {
 
-	private Map<Integer, Dog> dogs = new HashMap<Integer, Dog>();
+	private HashMap<Integer, Dog> dogs = new HashMap<Integer, Dog>();
 
 	@Override
 	public void add(Dog newDog) {
@@ -32,6 +32,7 @@ public class DogMemoryRepository implements IDogRepository {
 
 	@Override
 	public Dog SearchById(int id) {
+		return null;
 		// TODO Auto-generated method stub
 		
 	}

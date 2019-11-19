@@ -9,6 +9,7 @@ import javax.swing.JTextField;
 
 public class DogCreateView implements IView {
 
+	private static final String DEFAULT_MODALITY_TYPE = null;
 	private IDogController controller;
 	private JTextField name;
 	private JTextField breed;
@@ -29,12 +30,24 @@ public class DogCreateView implements IView {
 	}
 
 	private void initialize() {
-		this.setTitle(VIEW_TITLE);
+		this.setTitle(WelcomeView.VIEW_TITLE);
 		this.setModalityType(DEFAULT_MODALITY_TYPE);
 		
 	}
 	
-	private void setVisibles() {
+
+
+	private void setTitle(String viewTitle) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	private void setModalityType(String defaultModalityType) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	private void setVisible() {
 		// TODO Auto-generated method stub
 		
 	}
@@ -50,15 +63,25 @@ public class DogCreateView implements IView {
 		this.add(actionPanel, BorderLayout.SOUTH);
 	}
 
+	private void add(JPanel actionPanel, String south) {
+		// TODO Auto-generated method stub
+		
+	}
+
 	private void setUpInputDataPanel() {
 		JPanel inputDataPanel = new JPanel();
 		this.add(inputDataPanel);
 		inputDataPanel.setLayout(new GridLayout(0,2));
 		
-		this.addTextField(inputDataPanel, LABEL_NAME ,this.name);
-		this.addTextField(inputDataPanel, LABEL_BREED ,this.breed);
+		this.addTextField(inputDataPanel, WelcomeView.LABEL_NAME ,this.name);
+		this.addTextField(inputDataPanel, WelcomeView.LABEL_BREED ,this.breed);
 	}
 	
+	private void add(JPanel inputDataPanel) {
+		// TODO Auto-generated method stub
+		
+	}
+
 	private void addTextField(JPanel panel, String labelText, JTextField textField) {
 		panel.add(new JLabel(labelText));
 		panel.add(textField);

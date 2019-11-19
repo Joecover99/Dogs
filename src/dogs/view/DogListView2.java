@@ -13,6 +13,7 @@ import dogDTO.DogDTOForList;
 public class DogListView2 implements IView{
 
 	
+	private static final String DEFAULT_MODALITY_TYPE = null;
 	IDogController controller;
 	Collection<DogDTOForList> listOfDogs;
 
@@ -32,8 +33,22 @@ public class DogListView2 implements IView{
 	}
 	
 	private void initialize() {
-		this.setTitle(VIEW_TITLE);
+		this.setTitle(WelcomeView.VIEW_TITLE);
 		this.setModalityType(DEFAULT_MODALITY_TYPE);
+	}
+
+	private void setTitle(String viewTitle) {
+		// TODO Auto-generated method stub
+		
+	}
+	private void setVisible(boolean b) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	private void setModalityType(String defaultModalityType) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 	private void setUpComponents() {
@@ -41,12 +56,16 @@ public class DogListView2 implements IView{
 		this.SetUpActionPanel();
 	}
 	
+	private void pack() {
+		// TODO Auto-generated method stub
+	}
+	
 	private void setUpDisplayDataPanel() {
 		JPanel displayDataPanel = new JPanel();
 		displayDataPanel.setBorder(new EmptyBorder(20,20,20,20));
 		this.add(displayDataPanel);
 		
-		String[] columnNames = {LABEL_ID, LABEL_NAME, LABEL_BREED};
+		String[] columnNames = {DogListView.LABEL_ID, WelcomeView.LABEL_NAME, WelcomeView.LABEL_BREED};
 		
 		Object[][] data = new Object[this.listOfDogs.size()][3];
 		
@@ -65,6 +84,11 @@ public class DogListView2 implements IView{
 		displayDataPanel.add(scrollPane);
 	}
 	
+	private void add(JPanel displayDataPanel) {
+		// TODO Auto-generated method stub
+		
+	}
+
 	private void SetUpActionPanel() {
 		
 	}
