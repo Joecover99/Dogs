@@ -1,5 +1,7 @@
 package dogs.model;
 
+import java.util.Collection;
+
 public interface IDogRepository {
 
 	void add(Dog newDog);
