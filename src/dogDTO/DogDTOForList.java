@@ -1,7 +1,5 @@
 package dogDTO;
 
-import java.awt.Component;
-
 public class DogDTOForList {
 
 	public static DogDTOForList dogDTO;
