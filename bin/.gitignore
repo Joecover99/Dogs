@@ -1,2 +1,5 @@
 /dogs/
-/dogDTO/
+/helpers/
+/interfaces/
+/abstracts/
+/exceptions/

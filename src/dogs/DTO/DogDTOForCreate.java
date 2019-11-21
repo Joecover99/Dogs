@@ -1,4 +1,4 @@
-package dogDTO;
+package dogs.DTO;
 
 
 public class DogDTOForCreate {
