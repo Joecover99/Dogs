@@ -1,19 +1,12 @@
 package dogs.seeders;
 
-import dogs.factories.DogFactory;
-import dogs.models.IDogRepository;
+import interfaces.ISeeder;
 
-public class DogDataSeeder {
+public class DogDataSeeder implements ISeeder {
 
-	private IDogRepository repository;
-	
-	public DogDataSeeder(IDogRepository repository) {
-		this.repository = repository;
-		this.seedTable();
-	}
-	
-	private void seedTable() {
-		DogFactory factory = new DogFactory();
-		this.repository.insert(factory.generate());
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+		
 	}
 }

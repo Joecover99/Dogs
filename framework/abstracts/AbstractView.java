@@ -5,10 +5,11 @@ import javax.swing.JFrame;
 import interfaces.IView;
 
 public abstract class AbstractView extends JFrame implements IView {
-	public final static String TITLE = null;
-	
 	public AbstractView() {
-		super(TITLE);
+		this(null);
+	}
+	public AbstractView(final String title) {
+		super(title);
 	}
 	
 	public void display() {

@@ -2,9 +2,9 @@ package helpers;
 
 import java.util.HashMap;
 
+import abstracts.Controller;
+import abstracts.Controller.Verb;
 import exceptions.InadequateControllerConstructorException;
-import interfaces.IController;
-import interfaces.IController.Verb;
 import interfaces.IModel;
 
 public final class ApplicationRouting {
@@ -12,7 +12,7 @@ public final class ApplicationRouting {
 	private ApplicationRouting() { }
 	
 	@SuppressWarnings("rawtypes")
-	private static final HashMap<Class<?>, IController> controllers = new HashMap<Class<?>, IController>();
+	private static final HashMap<Class<?>, Controller> controllers = new HashMap<Class<?>, Controller>();
 	
 	public static void invoke(Class<?> controllerClass, Verb verb) throws InadequateControllerConstructorException {
 		invoke(controllerClass, verb, null);
@@ -20,18 +20,18 @@ public final class ApplicationRouting {
 	
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public static void invoke(Class<?> controllerClass, Verb verb, IModel param) throws InadequateControllerConstructorException {
-		IController instance = getOrInstantiate(controllerClass);
+		Controller instance = getOrInstantiate(controllerClass);
 		instance.invokeRoute(verb, param);
 	}
 	
 	@SuppressWarnings("rawtypes")
-	private static IController getOrInstantiate(Class<?> controllerClass) throws InadequateControllerConstructorException {
+	private static Controller getOrInstantiate(Class<?> controllerClass) throws InadequateControllerConstructorException {
 		if(controllers.containsKey(controllerClass)) {
 			return controllers.get(controllerClass);
 		} else {
-			IController controller;
+			Controller controller;
 			try {
-				controller = (IController) controllerClass.newInstance();
+				controller = (Controller) controllerClass.newInstance();
 			} catch (InstantiationException | IllegalAccessException e) {
 				throw new InadequateControllerConstructorException(e);
 			}

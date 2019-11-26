@@ -1,17 +1,16 @@
 package dogs.controllers;
 
-import dogs.models.Dog;
+import abstracts.Controller;
 import dogs.views.WelcomeView;
-import interfaces.IController;
 
 @SuppressWarnings("rawtypes")
-public class ApplicationController implements IController {
+public class ApplicationController extends Controller {
 
 	/**
 	 * @since Exercice 4, step 1
 	 */
 	@Override
-	public void index() {
+	protected void index() {
 		new WelcomeView();
 	}
 }

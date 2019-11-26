@@ -6,12 +6,12 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JPanel;
 import abstracts.AbstractView;
+import abstracts.Controller.Verb;
 import dogs.controllers.DogController;
 import dogs.models.Dog;
 import helpers.ApplicationRouting;
 import helpers.JExtButton;
 import helpers.JExtLabeledTextField;
-import interfaces.IController.Verb;
 
 public class DogCreateView extends AbstractView {
 	public final static String TITLE = "Inscription d'un chien";

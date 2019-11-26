@@ -3,9 +3,7 @@ package helpers;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JButton;
-
-import interfaces.IController.Verb;
+import abstracts.Controller.Verb;
 import interfaces.IModel;
 
 /**
@@ -13,17 +11,14 @@ import interfaces.IModel;
  * This element act like an href.
  * @author Benjamin Bergeron
  */
-public class JExtRouteInvokerButton extends JButton {
+public class JExtRouteInvokerButton extends JExtButton {
 	
 	public JExtRouteInvokerButton(String label, Class<?> controllerClass, Verb verb) {
 		this(label, controllerClass, verb, null);
 	}
 	
 	public JExtRouteInvokerButton(String label, Class<?> controllerClass, Verb verb, IModel argument) {
-		super(label);
-		
-		this.addActionListener(new ActionListener() {
-			
+		super(label, new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				ApplicationRouting.invoke(controllerClass, verb, argument);

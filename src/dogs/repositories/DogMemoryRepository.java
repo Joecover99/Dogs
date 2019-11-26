@@ -1,7 +1,8 @@
-package dogs.models;
+package dogs.repositories;
 
 import java.util.Collection;
 import abstracts.AbstractRepository;
+import dogs.models.Dog;
 
 public class DogMemoryRepository extends AbstractRepository<Dog> implements IDogRepository {
 

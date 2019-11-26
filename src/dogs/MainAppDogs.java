@@ -1,8 +1,8 @@
 package dogs;
 
+import abstracts.Controller.Verb;
 import dogs.controllers.ApplicationController;
 import helpers.ApplicationRouting;
-import interfaces.IController.Verb;
 
 public class MainAppDogs {
 	

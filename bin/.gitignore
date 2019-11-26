@@ -1,5 +1,7 @@
-/dogs/
-/helpers/
 /interfaces/
 /abstracts/
+/dogs/
+/test_cases/
 /exceptions/
+/mocks/
+/helpers/

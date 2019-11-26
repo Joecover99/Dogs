@@ -8,9 +8,9 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
 import abstracts.AbstractView;
+import abstracts.Controller.Verb;
 import dogs.controllers.DogController;
 import helpers.*;
-import interfaces.IController.Verb;
 
 public class WelcomeView extends AbstractView {
 	public final static String TITLE = "Nos amis les chiens";
@@ -26,7 +26,7 @@ public class WelcomeView extends AbstractView {
 	public static final String LABEL_BREED = "breed";
 	
 	public WelcomeView() {
-		super();
+		super(TITLE);
 		
 		this.setSize(DEFAULT_SIZE);	
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -56,7 +56,7 @@ public class WelcomeView extends AbstractView {
 	private class ActionPanel extends JPanel {
 		public ActionPanel() {
 			super();
-			this.add(new JExtRouteInvokerButton(LABEL_ADD_DOG, DogController.class, Verb.Create));
+			this.add(new JExtRouteInvokerButton(LABEL_ADD_DOG, DogController.class, Verb.Index));
 		}
 	}
 }

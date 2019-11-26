@@ -9,10 +9,14 @@ public interface IRepository<T extends IModel> {
 	
 	void insert(T item);
 	T select(int id);
-	Collection<T> selectMany(Predicate<T> filter);
-	Collection<T> selectAll();
 	void update(int index, T item);
 	void delete(T item);
 	
+	Collection<T> selectMany(Predicate<T> filter);
+	Collection<T> selectAll();
+	
 	int getSize();
+	
+	
+	// void save();
 }

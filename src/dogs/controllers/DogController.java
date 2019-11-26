@@ -2,14 +2,14 @@ package dogs.controllers;
 
 import java.util.Collection;
 
+import abstracts.Controller;
 import dogs.models.Dog;
-import dogs.models.IDogRepository;
+import dogs.repositories.IDogRepository;
 import dogs.views.Dogs.DogCreateView;
 import dogs.views.Dogs.DogIndexView;
-import interfaces.IController;
 import interfaces.IRepository;
 
-public class DogController implements IController<Dog> {
+public class DogController extends Controller<Dog> {
 
 	private IDogRepository repository;
 	
@@ -21,7 +21,7 @@ public class DogController implements IController<Dog> {
 	 * @since Exercice 4, step 7
 	 */
 	@Override
-	public void index() {
+	protected void index() {
 		Collection<Dog> dogList = this.repository.selectAll();
 		new DogIndexView(dogList);
 	}
@@ -30,13 +30,13 @@ public class DogController implements IController<Dog> {
 	 * @since Exercice 4, step 3
 	 */
 	@Override
-	public void create() { new DogCreateView(); }
+	protected void create() { new DogCreateView(); }
 	
 	/**
 	 * @since Exercice 4, step 5
 	 */
 	@Override
-	public void store(Dog item) {
+	protected void store(Dog item) {
 		System.out.print("YEET");
 	}
 }
