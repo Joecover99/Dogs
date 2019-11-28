@@ -46,4 +46,10 @@ public class Dog extends AbstractModel {
 		this.breed = breed;
 	}
 
+	@Override
+	public void persist() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
