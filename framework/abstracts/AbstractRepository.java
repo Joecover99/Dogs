@@ -1,10 +1,10 @@
 package abstracts;
 
 import java.util.ArrayList;
-import java.util.Collection;
+import java.util.Comparator;
 import java.util.HashMap;
+import java.util.List;
 import java.util.function.Predicate;
-import java.util.stream.Collectors;
 
 import interfaces.IModel;
 import interfaces.IRepository;
@@ -22,39 +22,46 @@ public abstract class AbstractRepository<T extends IModel> implements IRepositor
 		this.rows.put(nextId ++, item);
 	};
 	
+	// Selects
 	@Override
 	public T select(int id) {
 		return this.rows.get(id);
 	};
-	
 	@Override
-	public Collection<T> selectMany(Predicate<T> filter) {
-		return this.rows
-				.values()
-				.stream()
-				.filter(filter)
-				.collect(Collectors.toList());
-	}
-	
-	@Override
-	public Collection<T> selectAll() {
+	public List<T> select() {
 		return new ArrayList<T>(this.rows.values());
 	}
+	@Override
+	public List<T> select(Predicate<T> filter) {
+		List<T> list = this.select();
+		list.removeIf(e -> filter.test(e));
+		return list;
+	}
+	@Override
+	public List<T> select(Comparator<T> sortComparator) {
+		List<T> list = this.select();
+		list.sort(sortComparator);
+		return list;
+	}
+	@Override
+	public List<T> select(Predicate<T> filter, Comparator<T> sortComparator) {
+		List<T> list = this.select(filter);
+		list.sort(sortComparator);
+		return list;
+	}
 	
 	@Override
-	public void update(int index, T item) {
-		item.setId(index);
-		this.rows.replace(index, item);
+	public void update(T item) {
+		if(item.getId() == NULL_ID) {
+			this.insert(item);
+		} else {
+			this.rows.replace(item.getId(), item);
+		}
 	};
 	
 	@Override
 	public void delete(T item) {
 		item.setId(NULL_ID);
 		this.rows.remove(item.getId());
-	};
-	
-	@Override
-	public int getSize() {
-		return this.nextId;
 	};
 }

@@ -16,4 +16,16 @@ public class ModelMock implements IModel {
 
 	}
 
+	@Override
+	public void persist() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void save() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

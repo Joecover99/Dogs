@@ -8,7 +8,5 @@ public interface IModel {
 	 * Save current instance as a new instance in repository
 	 */
 	void persist();
-	
-	// void save();
-	// void delete();
+	void save();
 }

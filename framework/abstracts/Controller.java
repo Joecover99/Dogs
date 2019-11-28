@@ -3,6 +3,7 @@ package abstracts;
 import exceptions.NullRouteVerbException;
 import exceptions.UnimplementedRouteException;
 import interfaces.IModel;
+import interfaces.IRepository;
 
 /**
  * A generic "Resource Controller" abstract to implement the conventional CRUD-MVC pattern.
@@ -60,17 +61,17 @@ public abstract class Controller<T extends IModel> {
 	 * @param arguments
 	 * @throws UnimplementedRouteException
 	 */
-	public final void invokeRoute(Verb verb, T arguments) throws UnimplementedRouteException {
+	public final void invokeRoute(Verb verb, Object arguments) throws UnimplementedRouteException {
 		if(verb == null) {
 			throw new NullRouteVerbException();
 		}
 		
 		switch(verb) {
 		case Index:
-			this.index();
+			this.index(arguments);
 			break;
 		case Create:
-			this.create();
+			this.create(arguments);
 			break;
 		case Destroy:
 			this.destroy(arguments);
@@ -94,7 +95,7 @@ public abstract class Controller<T extends IModel> {
 	 * Invoke the view to display the index of the resource. In most case, a list of all currently available elements.
 	 * @throws UnimplementedRouteException
 	 */
-	protected void index() throws UnimplementedRouteException {
+	protected void index(Object arguments) throws UnimplementedRouteException {
 		throw new UnimplementedRouteException();
 	}
 	
@@ -102,7 +103,7 @@ public abstract class Controller<T extends IModel> {
 	 * Invoke the view to display the item creation form.
 	 * @throws UnimplementedRouteException
 	 */
-	protected void create() throws UnimplementedRouteException {
+	protected void create(Object arguments) throws UnimplementedRouteException {
 		throw new UnimplementedRouteException();
 	}
 	
@@ -111,7 +112,7 @@ public abstract class Controller<T extends IModel> {
 	 * @param item
 	 * @throws UnimplementedRouteException
 	 */
-	protected void store(T item) throws UnimplementedRouteException {
+	protected void store(Object arguments) throws UnimplementedRouteException {
 		throw new UnimplementedRouteException();
 	}
 	
@@ -120,7 +121,7 @@ public abstract class Controller<T extends IModel> {
 	 * @param item
 	 * @throws UnimplementedRouteException
 	 */
-	protected void show(T item) throws UnimplementedRouteException {
+	protected void show(Object instance) throws UnimplementedRouteException {
 		throw new UnimplementedRouteException();
 	}
 	
@@ -129,7 +130,7 @@ public abstract class Controller<T extends IModel> {
 	 * @param item
 	 * @throws UnimplementedRouteException
 	 */
-	protected void edit(T item) throws UnimplementedRouteException {
+	protected void edit(Object arguments) throws UnimplementedRouteException {
 		throw new UnimplementedRouteException();
 	}
 	
@@ -138,7 +139,7 @@ public abstract class Controller<T extends IModel> {
 	 * @param item
 	 * @throws UnimplementedRouteException
 	 */
-	protected void update(T item) throws UnimplementedRouteException {
+	protected void update(Object arguments) throws UnimplementedRouteException {
 		throw new UnimplementedRouteException();
 	}
 	
@@ -147,7 +148,7 @@ public abstract class Controller<T extends IModel> {
 	 * @param item
 	 * @throws UnimplementedRouteException
 	 */
-	protected void destroy(T item) throws UnimplementedRouteException {
+	protected void destroy(Object arguments) throws UnimplementedRouteException {
 		throw new UnimplementedRouteException();
 	}
 }

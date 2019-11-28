@@ -1,7 +1,6 @@
-/interfaces/
 /abstracts/
 /dogs/
-/test_cases/
-/exceptions/
 /mocks/
+/interfaces/
+/test_cases/
 /helpers/

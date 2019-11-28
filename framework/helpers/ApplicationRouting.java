@@ -4,6 +4,7 @@ import java.util.HashMap;
 
 import abstracts.Controller;
 import abstracts.Controller.Verb;
+import dogs.controllers.ClientController;
 import exceptions.InadequateControllerConstructorException;
 import interfaces.IModel;
 
@@ -11,16 +12,14 @@ public final class ApplicationRouting {
 	
 	private ApplicationRouting() { }
 	
-	@SuppressWarnings("rawtypes")
-	private static final HashMap<Class<?>, Controller> controllers = new HashMap<Class<?>, Controller>();
+	private static final HashMap<Class<?>, Controller<?>> controllers = new HashMap<Class<?>, Controller<?>>();
 	
 	public static void invoke(Class<?> controllerClass, Verb verb) throws InadequateControllerConstructorException {
 		invoke(controllerClass, verb, null);
 	}
 	
-	@SuppressWarnings({ "rawtypes", "unchecked" })
-	public static void invoke(Class<?> controllerClass, Verb verb, IModel param) throws InadequateControllerConstructorException {
-		Controller instance = getOrInstantiate(controllerClass);
+	public static void invoke(Class<?> controllerClass, Verb verb, Object param) throws InadequateControllerConstructorException {
+		Controller<?> instance = getOrInstantiate(controllerClass);
 		instance.invokeRoute(verb, param);
 	}
 	
@@ -32,10 +31,10 @@ public final class ApplicationRouting {
 			Controller controller;
 			try {
 				controller = (Controller) controllerClass.newInstance();
+				controllers.put(controllerClass, controller);
 			} catch (InstantiationException | IllegalAccessException e) {
 				throw new InadequateControllerConstructorException(e);
 			}
-			controllers.put(controllerClass, controller);
 			
 			return controller;
 		}

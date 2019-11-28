@@ -9,36 +9,38 @@ public class SpyController extends Controller {
 	public Verb usedVerb;
 	public IModel usedArgument;
 	
-	@Override protected void index() {
+	@Override protected void index(Object arguments) {
 		this.usedVerb = Verb.Index;
+		this.usedArgument = (IModel) arguments;
 	}
 	
-	@Override protected void create() {
+	@Override protected void create(Object arguments) {
 		this.usedVerb = Verb.Create;
+		this.usedArgument = (IModel) arguments;
 	}
 	
-	@Override protected void store(IModel item) {
+	@Override protected void store(Object arguments) {
 		this.usedVerb = Verb.Store;
-		this.usedArgument = item;
+		this.usedArgument = (IModel) arguments;
 	}
 	
-	@Override protected void show(IModel item) {
+	@Override protected void show(Object arguments) {
 		this.usedVerb = Verb.Show;
-		this.usedArgument = item;
+		this.usedArgument = (IModel) arguments;
 	}
 	
-	@Override protected void edit(IModel item) { 
+	@Override protected void edit(Object arguments) { 
 		this.usedVerb = Verb.Edit;
-		this.usedArgument = item;
+		this.usedArgument = (IModel) arguments;
 	}
 	
-	@Override protected void update(IModel item) {
+	@Override protected void update(Object arguments) {
 		this.usedVerb = Verb.Update;
-		this.usedArgument = item;
+		this.usedArgument = (IModel) arguments;
 	}
 	
-	@Override protected void destroy(IModel item) {
+	@Override protected void destroy(Object arguments) {
 		this.usedVerb = Verb.Destroy;
-		this.usedArgument = item;
+		this.usedArgument = (IModel) arguments;
 	}
 };

@@ -3,26 +3,23 @@ package dogs.controllers;
 import java.util.Collection;
 
 import abstracts.Controller;
+import abstracts.RepositoryManager;
 import dogs.models.Dog;
-import dogs.repositories.IDogRepository;
 import dogs.views.Dogs.DogCreateView;
 import dogs.views.Dogs.DogIndexView;
 import interfaces.IRepository;
 
 public class DogController extends Controller<Dog> {
 
-	private IDogRepository repository;
+	@SuppressWarnings("unchecked")
+	private IRepository<Dog> dogRepository = (IRepository<Dog>) RepositoryManager.getModelRepository(Dog.class);
 	
-	public void setRepository(IDogRepository repository) {
-		this.repository = repository;
-	}
-
 	/**
 	 * @since Exercice 4, step 7
 	 */
 	@Override
-	protected void index() {
-		Collection<Dog> dogList = this.repository.selectAll();
+	protected void index(Object arguments) {
+		Collection<Dog> dogList = this.dogRepository.select();
 		new DogIndexView(dogList);
 	}
 	
@@ -30,13 +27,14 @@ public class DogController extends Controller<Dog> {
 	 * @since Exercice 4, step 3
 	 */
 	@Override
-	protected void create() { new DogCreateView(); }
+	protected void create(Object arguments) { new DogCreateView(); }
 	
 	/**
 	 * @since Exercice 4, step 5
 	 */
 	@Override
-	protected void store(Dog item) {
-		System.out.print("YEET");
+	protected void store(Object arguments) {
+		Dog dog = (Dog) arguments;
+		dog.persist();
 	}
 }
