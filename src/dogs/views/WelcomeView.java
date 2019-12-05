@@ -5,6 +5,7 @@ import java.awt.Dimension;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTabbedPane;
 import javax.swing.SwingConstants;
 
 import abstracts.AbstractView;
@@ -21,9 +22,13 @@ public class WelcomeView extends AbstractView {
 
 	public static final Dimension DEFAULT_SIZE = new Dimension(475, 530);
 	public static final String LABEL_ADD_DOG = "Inscrire un chien...";
+	public static final String LABEL_CLIENT = "Clients";
 	public static final String ACTION_ADD_DOG = "Add Dog";
 	public static final String LABEL_NAME = "name";
 	public static final String LABEL_BREED = "breed";
+	
+	public static final String TAB_LABEL_WELCOME = "Acceuille";
+	public static final String TAB_LABEL_CLIENT = "Gestions des clients";
 	
 	public WelcomeView() {
 		super(TITLE);
@@ -31,32 +36,51 @@ public class WelcomeView extends AbstractView {
 		this.setSize(DEFAULT_SIZE);	
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		this.add(new WelcomePanel(), BorderLayout.CENTER);
-		this.add(new ActionPanel(), BorderLayout.SOUTH);
+		JTabbedPane tabbedPanel = new JTabbedPane();
+		tabbedPanel.addTab(TAB_LABEL_WELCOME, new WelcomeTabPanel());
+		tabbedPanel.addTab(TAB_LABEL_CLIENT, new ClientTabPanel());
+		this.add(tabbedPanel);
+		
 		
 		this.display();
 	}
 	
 	// Region sub components
-	/**
-	 * Sub-component WelcomePanel
-	 */
-	private class WelcomePanel extends JPanel {
-		public WelcomePanel() {
-			super();
+	
+	private class ClientTabPanel extends JPanel {
+		public ClientTabPanel() {
 			this.setLayout(new BorderLayout());
-			this.add(new JLabel(WELCOME_MESSAGE, SwingConstants.CENTER), BorderLayout.NORTH);
-			this.add(new JExtImage(this, WELCOME_PICTURE), BorderLayout.CENTER);
 		}
 	}
 	
-	/**
-	 * Sub-component ActionPanel
-	 */
-	private class ActionPanel extends JPanel {
-		public ActionPanel() {
-			super();
-			this.add(new JExtRouteInvokerButton(LABEL_ADD_DOG, DogController.class, Verb.Index));
+	private class WelcomeTabPanel extends JPanel {
+		
+		public WelcomeTabPanel() {
+			this.setLayout(new BorderLayout());
+			this.add(new WelcomeSplashPanel(), BorderLayout.CENTER);
+			this.add(new ActionPanel(), BorderLayout.SOUTH);
+		}
+		
+		/**
+		 * Sub-component WelcomePanel
+		 */
+		private class WelcomeSplashPanel extends JPanel {
+			public WelcomeSplashPanel() {
+				super();
+				this.setLayout(new BorderLayout());
+				this.add(new JLabel(WELCOME_MESSAGE, SwingConstants.CENTER), BorderLayout.NORTH);
+				this.add(new JExtImage(this, WELCOME_PICTURE), BorderLayout.CENTER);
+			}
+		}
+		
+		/**
+		 * Sub-component ActionPanel
+		 */
+		private class ActionPanel extends JPanel {
+			public ActionPanel() {
+				super();
+				this.add(new JExtRouteInvokerButton(LABEL_ADD_DOG, DogController.class, Verb.Index));
+			}
 		}
 	}
 }

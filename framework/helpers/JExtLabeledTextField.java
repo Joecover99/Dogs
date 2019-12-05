@@ -25,4 +25,8 @@ public class JExtLabeledTextField extends JPanel {
 	public String getText() {
 		return this.field.getText();
 	}
+	
+	public Boolean isEmpty() {
+		return this.getText().isEmpty();
+	}
 }

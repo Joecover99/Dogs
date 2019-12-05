@@ -23,6 +23,7 @@ public class Dog extends AbstractModel {
 
 	private String name;
 	private Breed breed;
+	private Client owner;
 	
 	public Dog(String name, Breed breed) {
 		super();
