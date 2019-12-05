@@ -40,10 +40,4 @@ public class Client extends AbstractModel {
 	public void setPhoneNumber(String phoneNumber) {
 		this.phoneNumber = phoneNumber;
 	}
-	
-	@Override
-	public void persist() {
-		// TODO Auto-generated method stub
-		
-	}
 }
