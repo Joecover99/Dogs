@@ -1,7 +1,10 @@
 package dogs.controllers;
 
 import abstracts.Controller;
+import abstracts.RepositoryManager;
+import dogs.models.Client;
 import dogs.views.WelcomeView;
+import interfaces.IRepository;
 
 @SuppressWarnings("rawtypes")
 public class ApplicationController extends Controller {
@@ -11,6 +14,9 @@ public class ApplicationController extends Controller {
 	 */
 	@Override
 	protected void index(Object arguments) {
-		new WelcomeView();
+		@SuppressWarnings("unchecked")
+		IRepository<Client> clientRepository = (IRepository<Client>) RepositoryManager.getModelRepository(Client.class);
+		
+		new WelcomeView(clientRepository.select());
 	}
 }

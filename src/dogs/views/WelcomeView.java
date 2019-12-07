@@ -1,16 +1,26 @@
 package dogs.views;
 
 import java.awt.BorderLayout;
+import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.event.ComponentEvent;
+import java.awt.event.ComponentListener;
+import java.util.Collection;
+
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 import javax.swing.SwingConstants;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
+import javax.swing.SwingUtilities;
 
 import abstracts.AbstractView;
 import abstracts.Controller.Verb;
 import dogs.controllers.DogController;
+import dogs.models.Client;
+import dogs.views.Clients.ClientCreateView;
 import helpers.*;
 
 public class WelcomeView extends AbstractView {
@@ -30,13 +40,36 @@ public class WelcomeView extends AbstractView {
 	public static final String TAB_LABEL_WELCOME = "Acceuille";
 	public static final String TAB_LABEL_CLIENT = "Gestions des clients";
 	
-	public WelcomeView() {
+	private Collection<Client> clients;
+	
+	public WelcomeView(final Collection<Client> clients) {
 		super(TITLE);
+		
+		this.clients = clients;
 		
 		this.setSize(DEFAULT_SIZE);	
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		JTabbedPane tabbedPanel = new JTabbedPane();
+		final Dimension originalTabsDim = tabbedPanel.getPreferredSize();
+		final JFrame thisRef = this;
+		tabbedPanel.addChangeListener(new ChangeListener() {
+			
+			@Override
+			public void stateChanged(ChangeEvent e) {
+				Component currentPanel = ((JTabbedPane) e.getSource()).getSelectedComponent();
+				Dimension panelDim = currentPanel.getPreferredSize();
+
+                Dimension nd = new Dimension(
+                        originalTabsDim.width + panelDim.width,
+                        originalTabsDim.height + panelDim.height);
+
+                tabbedPanel.setPreferredSize(nd);
+
+                thisRef.pack();
+			}
+		});
+		
 		tabbedPanel.addTab(TAB_LABEL_WELCOME, new WelcomeTabPanel());
 		tabbedPanel.addTab(TAB_LABEL_CLIENT, new ClientTabPanel());
 		this.add(tabbedPanel);
@@ -50,6 +83,8 @@ public class WelcomeView extends AbstractView {
 	private class ClientTabPanel extends JPanel {
 		public ClientTabPanel() {
 			this.setLayout(new BorderLayout());
+			this.add(new ClientCreateView());
+			this.add(new ClientView(clients));
 		}
 	}
 	

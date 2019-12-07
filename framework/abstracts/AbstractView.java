@@ -5,6 +5,8 @@ import javax.swing.JFrame;
 import interfaces.IView;
 
 public abstract class AbstractView extends JFrame implements IView {
+
+
 	public AbstractView() {
 		this(null);
 	}

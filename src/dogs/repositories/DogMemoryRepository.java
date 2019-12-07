@@ -1,10 +1,10 @@
 package dogs.repositories;
 
 import java.util.Collection;
-import abstracts.AbstractRepository;
+import abstracts.BasicRepository;
 import dogs.models.Dog;
 
-public class DogMemoryRepository extends AbstractRepository<Dog> implements IDogRepository {
+public class DogMemoryRepository extends BasicRepository<Dog> implements IDogRepository {
 
 	@Override
 	public Collection<Dog> selectByOwnerName() {
@@ -25,17 +25,3 @@ public class DogMemoryRepository extends AbstractRepository<Dog> implements IDog
 	}
 	
 }
-/*
-public abstract class Entity
-
-	private int id
-	
-	public Entity() {}
-
-public int getId() {
-	return this.id;
-}
-
-public void setId(int id) {
-	this.id = id;
-}*/

@@ -8,7 +8,7 @@ public class RepositoryManager {
 	
 	private RepositoryManager() { }
 	
-	private static final HashMap<Class<?>, IRepository<?>> repositories = new HashMap<Class<?>, IRepository<?>>();
+	private static HashMap<Class<?>, IRepository<?>> repositories = new HashMap<Class<?>, IRepository<?>>();
 	
 	public static IRepository<?> getModelRepository(Class<?> modelClass) {
 		return RepositoryManager.getOrCreateRepositoryInstance(modelClass);
@@ -28,5 +28,9 @@ public class RepositoryManager {
 		}
 		
 		return newRepository;
+	}
+	
+	public static void bootstrap(HashMap<Class<?>, IRepository<?>> ModelForRepositoryMapping) {
+		RepositoryManager.repositories = ModelForRepositoryMapping;
 	}
 }

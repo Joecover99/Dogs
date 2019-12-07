@@ -3,13 +3,13 @@ package dogs.models;
 import abstracts.AbstractModel;
 
 public class Breed extends AbstractModel {
-	private String name;
+	private String breed;
 	
-	public String getName() {
-		return this.name;
+	public String getBreed() {
+		return this.breed;
 	}
 	
-	public void setName(String name) {
-		this.name = name;
+	public void setName(String breed) {
+		this.breed = breed;
 	}
 }

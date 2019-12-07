@@ -17,7 +17,7 @@ import dogs.models.Dog;
 import helpers.ApplicationRouting;
 import helpers.JExtButton;
 
-public class ClientView extends AbstractView {
+public class ClientView extends JPanel {
 
 	public final static String TITLE = "Client list";
 	
