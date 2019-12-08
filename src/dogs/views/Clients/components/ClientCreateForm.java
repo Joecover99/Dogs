@@ -3,7 +3,6 @@ package dogs.views.Clients.components;
 import javax.swing.BorderFactory;
 
 import dogs.controllers.ClientController;
-import dogs.models.Client;
 
 @SuppressWarnings("serial")
 public class ClientCreateForm extends ClientForm {
@@ -15,7 +14,7 @@ public class ClientCreateForm extends ClientForm {
 	}
 
 	@Override
-	protected void submit(Client newClient) {
-		ClientController.store(newClient);
+	protected void onSubmit(final String firstName, final String lastName, final String phoneNumber) {
+		ClientController.store(firstName, lastName, phoneNumber);
 	}
 }

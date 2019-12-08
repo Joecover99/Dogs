@@ -5,17 +5,18 @@ import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
-import abstracts.AbstractView;
+
+import components.*;
 import dogs.controllers.ClientController;
 import dogs.controllers.DogController;
-import helpers.*;
 
 @SuppressWarnings("serial")
-public class WelcomeView extends AbstractView {
+public class WelcomeView extends View {
 	public final static String TITLE = "Nos amis les chiens";
 	
 	private static final String WELCOME_MESSAGE = "Bienvenue !";
@@ -53,7 +54,7 @@ public class WelcomeView extends AbstractView {
 			super();
 			this.setLayout(new BorderLayout());
 			this.add(new JLabel(WELCOME_MESSAGE, SwingConstants.CENTER), BorderLayout.NORTH);
-			this.add(new JExtImage(this, WELCOME_PICTURE), BorderLayout.CENTER);
+			this.add(new JLabel(new ImageIcon(this.getClass().getResource(WELCOME_PICTURE))), BorderLayout.CENTER);
 		}
 	}
 	

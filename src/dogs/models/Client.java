@@ -1,8 +1,10 @@
 package dogs.models;
 
-import abstracts.AbstractModel;
+import utils.Model;
 
-public class Client extends AbstractModel {
+public class Client extends Model {
+	
+	private static final long serialVersionUID = 1L;
 	
 	// Instance attributes
 	private String firstName;

@@ -1,12 +1,16 @@
 package interfaces;
 
-public interface IModel {
-	int getId();
-	void setId(int id);
+import java.io.Serializable;
+
+public interface IModel extends Serializable {
 	
 	/**
-	 * Save current instance as a new instance in repository
+	 * @return The instance's id
 	 */
-	void persist();
-	void save();
+	int getId();
+	
+	/**
+	 * @param id
+	 */
+	void setId(int id);
 }

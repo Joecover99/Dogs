@@ -6,15 +6,17 @@ import java.util.List;
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JTextField;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
+import components.JExtLabeledComponent;
 import dogs.models.Client;
-import helpers.JExtLabeledTextField;
 
 /**
  * The panel holding the ClientTable, the filter panel and more
  */
+@SuppressWarnings("serial")
 public class ClientTablePanel extends JPanel {
 	public final static String LABEL_NAME_FILTER = "Filtrer par nom :";
 	
@@ -26,7 +28,7 @@ public class ClientTablePanel extends JPanel {
 		
 		ClientTable clientTable = new ClientTable(clients);
 		NameFilterInputField clientNameSearchField = new NameFilterInputField(clientTable);
-		this.add(clientNameSearchField, BorderLayout.NORTH);
+		this.add(new JExtLabeledComponent(LABEL_NAME_FILTER, clientNameSearchField), BorderLayout.NORTH);
 		this.add(new JScrollPane(clientTable), BorderLayout.CENTER);
 	}
 	
@@ -36,13 +38,16 @@ public class ClientTablePanel extends JPanel {
 	 * @author benbe
 	 *
 	 */
-	@SuppressWarnings("serial")
-	private class NameFilterInputField extends JExtLabeledTextField {
+	private class NameFilterInputField extends JTextField {
+		
+		private ClientTable clientTable;
+		
 		public NameFilterInputField(ClientTable clientTable) {
 			super(LABEL_NAME_FILTER);
+			this.clientTable = clientTable;
 			
 			// Add a simple listener to change the table's filter when the text field change
-			this.field.getDocument().addDocumentListener(new DocumentListener() {
+			this.getDocument().addDocumentListener(new DocumentListener() {
 				
 				@Override
 				public void removeUpdate(DocumentEvent e) { this.noticeFilter(); }
@@ -53,10 +58,13 @@ public class ClientTablePanel extends JPanel {
 				@Override
 				public void changedUpdate(DocumentEvent e) { this.noticeFilter(); }
 				
-				private void noticeFilter() {
-					clientTable.setNameFilter(field.getText());
-				}
+				private void noticeFilter() { onChanged(); }
 			});
 		}
+		
+		private void onChanged() {
+			clientTable.setNameFilter(this.getText());
+		}
+		
 	}
 }

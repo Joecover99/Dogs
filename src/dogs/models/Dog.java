@@ -1,8 +1,9 @@
 package dogs.models;
 
-import abstracts.AbstractModel;
+import utils.Model;
 
-public class Dog extends AbstractModel {
+@SuppressWarnings("serial")
+public class Dog extends Model {
 	
 	public static final String NO_OWNER_NAME = "n/a";
 	

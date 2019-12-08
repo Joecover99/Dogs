@@ -1,22 +1,19 @@
 package mocks;
 
-import abstracts.RepositoryManager;
+import java.util.Random;
+
 import interfaces.IModel;
 import interfaces.IRepository;
 
+@SuppressWarnings("serial")
 public class ModelMock implements IModel {
-
-	private IRepository<IModel> repository;
-	public int id = IRepository.NULL_ID;
 	
-	@SuppressWarnings("unchecked")
-	public void AbstractModel() {
-		this.repository = (IRepository<IModel>) RepositoryManager.getModelRepository(this.getClass());
-	}
+	public int uniqueId = new Random().nextInt();
+	
+	public int id = IRepository.NULL_ID;
 	
 	@Override
 	public int getId() {
-		// TODO Auto-generated method stub
 		return this.id;
 	}
 
@@ -24,17 +21,9 @@ public class ModelMock implements IModel {
 	public void setId(int id) {
 		this.id = id;
 	}
-
+	
 	@Override
-	public void persist() {
-		// TODO Auto-generated method stub
-		this.repository.insert(this);
+	public boolean equals(Object obj) {
+		return ((ModelMock) obj).uniqueId == this.uniqueId;
 	}
-
-	@Override
-	public void save() {
-		// TODO Auto-generated method stub
-		this.repository.update(this);
-	}
-
 }

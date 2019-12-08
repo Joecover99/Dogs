@@ -7,25 +7,28 @@ import java.util.List;
 
 import javax.swing.BorderFactory;
 import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.RowFilter;
 
-import abstracts.AbstractView;
+import components.Form;
+import components.JExtLabeledComponent;
+import components.JExtModelTable;
+import components.View;
 import dogs.controllers.DogController;
 import dogs.models.Client;
 import dogs.models.Dog;
 import dogs.models.Dog.Breed;
 import dogs.views.SearchModelInstanceByIdPanel;
-import helpers.JExtLabeledComponent;
-import helpers.JExtModelTable;
+import exceptions.ModelNotPersistedException;
 
 @SuppressWarnings("serial")
-public class DogIndexView extends AbstractView {
-	public final static String TITLE = "Dog list";
+public class DogIndexView extends View {
+	public final static String TITLE = "Gestion des chiens";
 
 	public DogIndexView(List<Dog> dogs, Client[] clients) {
-		super();
+		super(TITLE);
 		this.setLayout(new BorderLayout(2, 2));
 		this.add(new SearchDogByIdForm(dogs.size() - 1), BorderLayout.NORTH);
 		this.add(new DogTableSection(dogs), BorderLayout.CENTER);
@@ -101,7 +104,11 @@ public class DogIndexView extends AbstractView {
 
 		@Override
 		protected void onSelect(int id) {
-			DogController.edit(id);
+			try {
+				DogController.edit(id);
+			} catch (ModelNotPersistedException e) {
+				JOptionPane.showMessageDialog(this, Form.CANNOT_FIND_ITEM_ERROR, Form.SUBMIT_ERROR_TITLE, JOptionPane.ERROR_MESSAGE);
+			}
 		}
 		
 	}

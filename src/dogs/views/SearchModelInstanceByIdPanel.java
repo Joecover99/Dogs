@@ -8,12 +8,12 @@ import javax.swing.JPanel;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerNumberModel;
 
-import helpers.JExtButton;
+import components.JExtButton;
 import interfaces.IRepository;
 
 @SuppressWarnings("serial")
 public abstract class SearchModelInstanceByIdPanel extends JPanel {
-	public final static String CONFIRM_BUTTON_LABEL = "Go";
+	public final static String CONFIRM_BUTTON_LABEL = "Modifier";
 	public final static int DEFAULT_INDEX = 0;
 	
 	public SearchModelInstanceByIdPanel(final String panelTitle, final int maxId) {

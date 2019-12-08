@@ -1,16 +1,12 @@
 package dogs.views.Clients;
 
-import java.awt.Component;
 import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 
-import dogs.models.Client;
-import helpers.JExtButton;
-import helpers.JExtLabeledTextField;
+import components.Form;
+import dogs.controllers.ClientController;
 
 @SuppressWarnings("serial")
 public class ClientCreateView extends JPanel {
@@ -24,25 +20,28 @@ public class ClientCreateView extends JPanel {
 	public ClientCreateView() {
 		this.setLayout(new GridLayout(4, 1, 2, 2));
 		
-		final JExtLabeledTextField firstNameInput = new JExtLabeledTextField(FIRSTNAME_LABEL);
-		final JExtLabeledTextField lastNameInput = new JExtLabeledTextField(LASTNAME_LABEL);
-		final JExtLabeledTextField phoneNumberInput = new JExtLabeledTextField(PHONE_NUMBER_LABEL);
-		this.add(firstNameInput);
-		this.add(lastNameInput);
-		this.add(phoneNumberInput);
+		final JTextField firstNameInput = new JTextField();
+		final JTextField lastNameInput = new JTextField();
+		final JTextField phoneNumberInput = new JTextField();
 		
-		final Component parentOfDialogue = this;
-		final JExtButton submitButton = new JExtButton(SUBMIT_LABEL, new ActionListener() {
+		Object[][] labelFieldList = new Object[][] {
+			{FIRSTNAME_LABEL, firstNameInput},
+			{LASTNAME_LABEL, lastNameInput},
+			{PHONE_NUMBER_LABEL, phoneNumberInput}
+		};
+		
+		this.add(new Form(labelFieldList) {
+			
 			@Override
-			public void actionPerformed(ActionEvent e) {
-				if(!firstNameInput.isEmpty() && !lastNameInput.isEmpty() && !phoneNumberInput.isEmpty()) {
-					Client newClient = new Client(firstNameInput.getText(), lastNameInput.getText(), phoneNumberInput.getText());
-					newClient.persist();
-					JOptionPane.showMessageDialog(parentOfDialogue, SUCCESS_LABEL);
-				}
+			protected void submit() {
+				ClientController.store(firstNameInput.getText(), lastNameInput.getText(), phoneNumberInput.getText());
+				JOptionPane.showMessageDialog(this, SUCCESS_LABEL);
+			}
+			
+			@Override
+			protected Boolean checkValidity() {
+				return !firstNameInput.getText().isEmpty() && !lastNameInput.getText().isEmpty() && !phoneNumberInput.getText().isEmpty();
 			}
 		});
-		
-		this.add(submitButton);
 	}
 }

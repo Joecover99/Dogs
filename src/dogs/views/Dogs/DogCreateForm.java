@@ -1,19 +1,15 @@
 package dogs.views.Dogs;
 
-import java.awt.Component;
-import java.util.HashMap;
-import java.util.Map;
-
 import javax.swing.BorderFactory;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import components.Form;
 import dogs.controllers.DogController;
 import dogs.models.Client;
 import dogs.models.Dog.Breed;
-import dogs.views.Form;
 
 @SuppressWarnings("serial")
 public class DogCreateForm extends JPanel {

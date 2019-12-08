@@ -1,22 +1,27 @@
 package dogs.views.Clients;
 
-import abstracts.AbstractView;
+import components.View;
 import dogs.controllers.ClientController;
 import dogs.models.Client;
 import dogs.views.Clients.components.ClientForm;
+import exceptions.ModelNotPersistedException;
 
 @SuppressWarnings("serial")
-public class ClientEditView extends AbstractView {
+public class ClientEditView extends View {
 	public final static String TITLE = "Modifier un client";
 	
 	public ClientEditView(Client client) {
 		super(TITLE);
 		
-		AbstractView hostView = this;
+		View hostView = this;
 		this.add(new ClientForm(client) {
 			@Override
-			protected void submit(Client client) {
-				ClientController.update(client);
+			protected void onSubmit(final String firstName, final String lastName, final String phoneNumber) {
+				try {
+					ClientController.update(client.getId(), firstName, lastName, phoneNumber);
+				} catch (ModelNotPersistedException e) {
+					// TODO
+				}
 				hostView.dispose();
 			}
 		});

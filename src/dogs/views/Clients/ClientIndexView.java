@@ -1,24 +1,16 @@
 package dogs.views.Clients;
 
 import java.awt.BorderLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.List;
 
-import javax.swing.BorderFactory;
-import javax.swing.JPanel;
-import javax.swing.JSpinner;
-import javax.swing.SpinnerNumberModel;
-
-import abstracts.AbstractView;
+import components.View;
 import dogs.models.Client;
 import dogs.views.Clients.components.ClientTablePanel;
 import dogs.views.SearchModelInstanceByIdPanel;
 import dogs.views.Clients.components.ClientCreateForm;
-import helpers.JExtButton;
 
 @SuppressWarnings("serial")
-public class ClientIndexView extends AbstractView {
+public class ClientIndexView extends View {
 	
 	public final static String TITLE = "Gestion des clients";
 	

@@ -14,15 +14,16 @@ import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 import javax.swing.border.EmptyBorder;
 
-import abstracts.AbstractView;
+import components.Form;
+import components.JExtButton;
+import components.View;
 import dogs.controllers.DogController;
 import dogs.models.Dog;
 import dogs.models.Dog.Breed;
-import dogs.views.Form;
-import helpers.JExtButton;
+import exceptions.ModelNotPersistedException;
 
 @SuppressWarnings("serial")
-public class DogEditView extends AbstractView {
+public class DogEditView extends View {
 	
 	// Constexpr
 	public final static String TITLE = "Modifier un chien";
@@ -62,8 +63,12 @@ public class DogEditView extends AbstractView {
 			
 			@Override
 			protected void submit() {
-				DogController.update(dog.getId(), nameInputField.getText(), (Breed) breedInputField.getSelectedItem());
-				JOptionPane.showMessageDialog(this, EDIT_SUCCESS_DIALOGUE, Form.SUCCESS_DIALOG_TITLE, JOptionPane.INFORMATION_MESSAGE);
+				try {
+					DogController.update(dog.getId(), nameInputField.getText(), (Breed) breedInputField.getSelectedItem());
+					JOptionPane.showMessageDialog(this, EDIT_SUCCESS_DIALOGUE, Form.SUCCESS_DIALOG_TITLE, JOptionPane.INFORMATION_MESSAGE);
+				} catch (ModelNotPersistedException e) {
+					JOptionPane.showMessageDialog(this, Form.CANNOT_FIND_ITEM_ERROR, Form.SUBMIT_ERROR_TITLE, JOptionPane.ERROR_MESSAGE);
+				}
 			}
 			
 			@Override
@@ -87,9 +92,13 @@ public class DogEditView extends AbstractView {
 						 DELETE_DIALOG_OPTION[1]);		// initialValue
 				 
 				 if(confirmed == DELETE_DIALOG_CONFIRM_VALUE) {
-					 DogController.delete(dog);
-					 JOptionPane.showMessageDialog(mainPanel, DELETE_SUCCESS_DIALOG_MESSAGE, Form.SUCCESS_DIALOG_TITLE, JOptionPane.INFORMATION_MESSAGE);
-					 ((Window) SwingUtilities.getRoot(mainPanel)).dispose();
+					 try {
+						 DogController.delete(dog);
+						 JOptionPane.showMessageDialog(mainPanel, DELETE_SUCCESS_DIALOG_MESSAGE, Form.SUCCESS_DIALOG_TITLE, JOptionPane.INFORMATION_MESSAGE);
+						 ((Window) SwingUtilities.getRoot(mainPanel)).dispose();
+					 } catch (ModelNotPersistedException e1) {
+						 JOptionPane.showMessageDialog(mainPanel, Form.CANNOT_FIND_ITEM_ERROR, Form.SUBMIT_ERROR_TITLE, JOptionPane.ERROR_MESSAGE);
+					 }
 				 }
 			}
 		});
