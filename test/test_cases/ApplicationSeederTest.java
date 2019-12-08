@@ -24,5 +24,4 @@ class ApplicationSeederTest {
 		// Assert
 		fail("Not yet implemented"); // TODO test that data are added to repository
 	}
-
 }

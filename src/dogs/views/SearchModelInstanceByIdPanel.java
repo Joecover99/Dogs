@@ -22,15 +22,13 @@ public abstract class SearchModelInstanceByIdPanel extends JPanel {
 		JSpinner idInput = new JSpinner(new SpinnerNumberModel(DEFAULT_INDEX, IRepository.STARTING_ID, maxId, 1));
 		this.add(idInput);
 		
-		JExtButton confirmButton = new JExtButton(CONFIRM_BUTTON_LABEL, new ActionListener() {
+		this.add(new JExtButton(CONFIRM_BUTTON_LABEL, new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				int id = (int)idInput.getValue();
 				onSelect(id);
 			}
-		});
-		
-		this.add(confirmButton);
+		}));
 	}
 	
 	protected abstract void onSelect(final int id);
