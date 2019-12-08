@@ -37,8 +37,7 @@ class FormTest {
 		assertTrue(form.wasSubmited);
 	}
 	
-	
-	@Ignore("Open an anoying popup - disabled for group test") @Test
+	@Ignore("Open an anoying popup - disabled for group test") // @Test
 	void when_submit_button_clicked_and_not_valid_open_dont_submit() {
 		// Arrange
 		FormMock form = new FormMock(ANY_LABEL_FIELD_LIST);

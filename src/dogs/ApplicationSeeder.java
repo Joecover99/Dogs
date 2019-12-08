@@ -6,6 +6,8 @@ import dogs.models.Dog.Breed;
 import interfaces.IRepository;
 
 public class ApplicationSeeder {
+	private ApplicationSeeder() {}
+	
 	public static void run(IRepository<Dog> dogRepository, IRepository<Client> clientRepository) {
 		Client Corrine = new Client("Corrine", "Dion", "897-472-5018");
 		Client Bianca = new Client("Bianca", "Licorne", "117-142-0468");
