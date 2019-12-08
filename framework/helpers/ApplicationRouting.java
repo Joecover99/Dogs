@@ -14,6 +14,11 @@ public final class ApplicationRouting {
 	
 	private static final HashMap<Class<?>, Controller<?>> controllers = new HashMap<Class<?>, Controller<?>>();
 	
+	@SuppressWarnings("unchecked")
+	public static <T> T getController() {
+		return (T) getOrInstantiate(T);
+	}
+	
 	public static void invoke(Class<?> controllerClass, Verb verb) throws InadequateControllerConstructorException {
 		invoke(controllerClass, verb, null);
 	}

@@ -9,13 +9,24 @@ import java.util.function.Predicate;
 import interfaces.IModel;
 import interfaces.IRepository;
 
-public abstract class AbstractRepository<T extends IModel> implements IRepository<T> {
-	private Integer nextId;
-	protected HashMap<Integer, T> rows = new HashMap<Integer, T>();
+/**
+ * A basic repository with methods to insert, delete, update and select with or without filter and sorter.
+ * Can be extended to implement more specific methods.
+ * @author Benjamin Bergeron
+ *
+ * @param <T> The model class held within the repository
+ */
+public class BasicRepository<T extends IModel> implements IRepository<T> {
 	
-	public AbstractRepository() {
-		this.nextId = STARTING_ID;
-	}
+	/**
+	 * Keep the next available ID for insertion
+	 */
+	private Integer nextId = IRepository.STARTING_ID;
+	
+	/**
+	 * A hash map linking each instance to it's ID
+	 */
+	protected HashMap<Integer, T> rows = new HashMap<Integer, T>();
 	
 	public void insert(T item) {
 		item.setId(nextId);

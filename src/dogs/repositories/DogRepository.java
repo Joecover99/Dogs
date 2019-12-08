@@ -1,10 +1,10 @@
 package dogs.repositories;
 
 import java.util.Collection;
-import abstracts.AbstractRepository;
+import abstracts.BasicRepository;
 import dogs.models.Dog;
 
-public class DogMemoryRepository extends AbstractRepository<Dog> implements IDogRepository {
+public class DogRepository extends BasicRepository<Dog> implements IDogRepository {
 
 	@Override
 	public Collection<Dog> selectByOwnerName() {

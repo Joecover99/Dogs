@@ -3,7 +3,6 @@ package abstracts;
 import exceptions.NullRouteVerbException;
 import exceptions.UnimplementedRouteException;
 import interfaces.IModel;
-import interfaces.IRepository;
 
 /**
  * A generic "Resource Controller" abstract to implement the conventional CRUD-MVC pattern.

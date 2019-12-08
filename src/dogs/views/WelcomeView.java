@@ -2,15 +2,17 @@ package dogs.views;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.util.Collection;
+
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTabbedPane;
 import javax.swing.SwingConstants;
-
 import abstracts.AbstractView;
 import abstracts.Controller.Verb;
 import dogs.controllers.DogController;
+import dogs.models.Client;
+import dogs.views.Clients.components.ClientCreateForm;
 import helpers.*;
 
 public class WelcomeView extends AbstractView {
@@ -30,13 +32,15 @@ public class WelcomeView extends AbstractView {
 	public static final String TAB_LABEL_WELCOME = "Acceuille";
 	public static final String TAB_LABEL_CLIENT = "Gestions des clients";
 	
+	private Collection<Client> clients;
+	
 	public WelcomeView() {
 		super(TITLE);
 		
 		this.setSize(DEFAULT_SIZE);	
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		JTabbedPane tabbedPanel = new JTabbedPane();
+		JExtDynamicTabbedPanel tabbedPanel = new JExtDynamicTabbedPanel();
 		tabbedPanel.addTab(TAB_LABEL_WELCOME, new WelcomeTabPanel());
 		tabbedPanel.addTab(TAB_LABEL_CLIENT, new ClientTabPanel());
 		this.add(tabbedPanel);
@@ -50,6 +54,8 @@ public class WelcomeView extends AbstractView {
 	private class ClientTabPanel extends JPanel {
 		public ClientTabPanel() {
 			this.setLayout(new BorderLayout());
+			this.add(new ClientCreateForm());
+			this.add(new ClientView(clients));
 		}
 	}
 	
