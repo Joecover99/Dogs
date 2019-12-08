@@ -17,9 +17,9 @@ import components.JExtLabeledComponent;
 import components.JExtModelTable;
 import components.View;
 import dogs.controllers.DogController;
-import dogs.models.Client;
 import dogs.models.Dog;
 import dogs.models.Dog.Breed;
+import dogs.models.IClient;
 import dogs.views.SearchModelInstanceByIdPanel;
 import exceptions.ModelNotPersistedException;
 
@@ -27,7 +27,7 @@ import exceptions.ModelNotPersistedException;
 public class DogIndexView extends View {
 	public final static String TITLE = "Gestion des chiens";
 
-	public DogIndexView(List<Dog> dogs, Client[] clients) {
+	public DogIndexView(List<Dog> dogs, IClient[] clients) {
 		super(TITLE);
 		this.setLayout(new BorderLayout(2, 2));
 		this.add(new SearchDogByIdForm(dogs.size() - 1), BorderLayout.NORTH);

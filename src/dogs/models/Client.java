@@ -2,7 +2,7 @@ package dogs.models;
 
 import utils.Model;
 
-public class Client extends Model {
+public class Client extends Model implements IClient {
 	
 	private static final long serialVersionUID = 1L;
 	

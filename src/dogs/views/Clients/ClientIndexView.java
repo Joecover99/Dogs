@@ -4,7 +4,7 @@ import java.awt.BorderLayout;
 import java.util.List;
 
 import components.View;
-import dogs.models.Client;
+import dogs.models.IClient;
 import dogs.views.Clients.components.ClientTablePanel;
 import dogs.views.SearchModelInstanceByIdPanel;
 import dogs.views.Clients.components.ClientCreateForm;
@@ -14,16 +14,16 @@ public class ClientIndexView extends View {
 	
 	public final static String TITLE = "Gestion des clients";
 	
-	private List<Client> clients;
+	private List<IClient> clients;
 	
 	// Constructors
-	public ClientIndexView(List<Client> clients) {
+	public ClientIndexView(List<IClient> clientList) {
 		super(TITLE);
 		this.setLayout(new BorderLayout(2, 2));
-		this.clients = clients;
+		this.clients = clientList;
 		
-		this.add(new SearchClientByIdPane(clients.size() - 1), BorderLayout.NORTH);
-		this.add(new ClientTablePanel(clients), BorderLayout.CENTER);
+		this.add(new SearchClientByIdPane(clientList.size() - 1), BorderLayout.NORTH);
+		this.add(new ClientTablePanel(clientList), BorderLayout.CENTER);
 		this.add(new ClientCreateForm(), BorderLayout.SOUTH);
 		
 		this.display();

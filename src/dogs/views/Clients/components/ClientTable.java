@@ -5,14 +5,14 @@ import java.util.List;
 import javax.swing.RowFilter;
 
 import components.JExtModelTable;
-import dogs.models.Client;
+import dogs.models.IClient;
 
 /**
  * A sortable JTable of client with costume methods to apply filter on name fields 
  *
  */
 @SuppressWarnings("serial")
-public class ClientTable extends JExtModelTable<Client> {
+public class ClientTable extends JExtModelTable<IClient> {
 	
 	// private static final int ID_COLUMN_INDEX = 0;
 	private static final int FIRST_NAME_COLUMN_INDEX = 1;
@@ -20,8 +20,8 @@ public class ClientTable extends JExtModelTable<Client> {
 	// private static final int PHONE_NUMBER_COLUMN_INDEX = 3;
 	private static final String[] COLUMN_NAMES = { "Id", "FirstName", "LastName", "PhoneNumber" };
 	
-	public ClientTable(final List<Client> clients) {
-		super(COLUMN_NAMES, clients);
+	public ClientTable(final List<IClient> clientList) {
+		super(COLUMN_NAMES, clientList);
 	}
 	
 	public void setNameFilter(String value) {
@@ -40,7 +40,7 @@ public class ClientTable extends JExtModelTable<Client> {
 	}
 
 	@Override
-	public Object[] generateRowObject(Client client) {
+	public Object[] generateRowObject(IClient client) {
 		return new Object[]{
 			client.getId(),
 			client.getFirstName(),

@@ -11,7 +11,7 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
 import components.JExtLabeledComponent;
-import dogs.models.Client;
+import dogs.models.IClient;
 
 /**
  * The panel holding the ClientTable, the filter panel and more
@@ -21,12 +21,12 @@ public class ClientTablePanel extends JPanel {
 	public final static String LABEL_NAME_FILTER = "Filtrer par nom :";
 	
 	public static final String TITLE = "Trouver un client parmis la liste des clients";
-	public ClientTablePanel(List<Client> clients) {
+	public ClientTablePanel(List<IClient> clientList) {
 		super();
 		this.setBorder(BorderFactory.createTitledBorder(TITLE));
 		this.setLayout(new BorderLayout(8, 8));
 		
-		ClientTable clientTable = new ClientTable(clients);
+		ClientTable clientTable = new ClientTable(clientList);
 		NameFilterInputField clientNameSearchField = new NameFilterInputField(clientTable);
 		this.add(new JExtLabeledComponent(LABEL_NAME_FILTER, clientNameSearchField), BorderLayout.NORTH);
 		this.add(new JScrollPane(clientTable), BorderLayout.CENTER);

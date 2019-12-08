@@ -2,7 +2,7 @@ package dogs.views.Clients;
 
 import components.View;
 import dogs.controllers.ClientController;
-import dogs.models.Client;
+import dogs.models.IClient;
 import dogs.views.Clients.components.ClientForm;
 import exceptions.ModelNotPersistedException;
 
@@ -10,7 +10,7 @@ import exceptions.ModelNotPersistedException;
 public class ClientEditView extends View {
 	public final static String TITLE = "Modifier un client";
 	
-	public ClientEditView(Client client) {
+	public ClientEditView(IClient client) {
 		super(TITLE);
 		
 		View hostView = this;

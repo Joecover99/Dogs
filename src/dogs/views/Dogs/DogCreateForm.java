@@ -10,6 +10,7 @@ import components.Form;
 import dogs.controllers.DogController;
 import dogs.models.Client;
 import dogs.models.Dog.Breed;
+import dogs.models.IClient;
 
 @SuppressWarnings("serial")
 public class DogCreateForm extends JPanel {
@@ -23,14 +24,14 @@ public class DogCreateForm extends JPanel {
 	// Form fields
 	final JTextField nameInputField;
 	final JComboBox<Breed> breedInputField;
-	final JComboBox<Client> clientInputField;
+	final JComboBox<IClient> clientInputField;
 	
 	// Constructors
-	public DogCreateForm(Client[] clients) {
+	public DogCreateForm(IClient[] clients) {
 		this.setBorder(BorderFactory.createTitledBorder(TITLE));
 		this.nameInputField = new JTextField();
 		this.breedInputField = new JComboBox<Breed>(Breed.values());
-		this.clientInputField = new JComboBox<Client>(clients);
+		this.clientInputField = new JComboBox<IClient>(clients);
 		
 		Object[][] labelFieldList = new Object[][] {
 			{ NAME_LABEL, nameInputField },

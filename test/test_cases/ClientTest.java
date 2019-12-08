@@ -4,8 +4,18 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
+import dogs.models.Client;
+
 class ClientTest {
 
+	public final static String ANY_FIRSTNAME = "Gob";
+	public final static String ANY_LASTNAME = "Braton";
+	public final static String ANY_PHONENUMBER = "420-911-1825";
+	
+	public static Client createAnyClient() {
+		return new Client(ANY_FIRSTNAME, ANY_LASTNAME, ANY_PHONENUMBER);
+	}
+	
 	@Test
 	void testClient() {
 		fail("Not yet implemented");

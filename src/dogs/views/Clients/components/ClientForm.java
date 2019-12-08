@@ -6,6 +6,7 @@ import javax.swing.JTextField;
 
 import components.Form;
 import dogs.models.Client;
+import dogs.models.IClient;
 
 /**
  * A form shared by the client edit form and client creation form
@@ -29,7 +30,7 @@ public abstract class ClientForm extends JPanel {
 		this(new Client("", "", ""));
 	}
 	
-	public ClientForm(Client client) {
+	public ClientForm(IClient client) {
 		this.firstNameInput = new JTextField(client.getFirstName());
 		this.lastNameInput = new JTextField(client.getLastName());
 		this.phoneNumberInput = new JTextField(client.getPhoneNumber());

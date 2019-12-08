@@ -5,8 +5,8 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 
 import dogs.ApplicationSeeder;
-import dogs.models.Client;
 import dogs.models.Dog;
+import dogs.models.IClient;
 import interfaces.IRepository;
 import utils.Repository;
 
@@ -16,7 +16,7 @@ class ApplicationSeederTest {
 	void testRun() {
 		// Assert
 		IRepository<Dog> dogRepository = new Repository<Dog>();
-		IRepository<Client> clientRepository = new Repository<Client>();
+		IRepository<IClient> clientRepository = new Repository<IClient>();
 		
 		// Act
 		ApplicationSeeder.run(dogRepository, clientRepository);
