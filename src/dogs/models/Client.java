@@ -4,9 +4,6 @@ import abstracts.AbstractModel;
 
 public class Client extends AbstractModel {
 	
-	// Static attributes
-	
-	
 	// Instance attributes
 	private String firstName;
 	private String lastName;
@@ -44,5 +41,10 @@ public class Client extends AbstractModel {
 		
 	public void setPhoneNumber(final String phoneNumber) {
 		this.phoneNumber = phoneNumber;
+	}
+	
+	@Override
+	public String toString() {
+		return this.getFirstName() + " " + this.getLastName();
 	}
 }

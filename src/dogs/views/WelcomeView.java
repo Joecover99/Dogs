@@ -2,19 +2,19 @@ package dogs.views;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
-import java.util.Collection;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import abstracts.AbstractView;
-import abstracts.Controller.Verb;
+import dogs.controllers.ClientController;
 import dogs.controllers.DogController;
-import dogs.models.Client;
-import dogs.views.Clients.components.ClientCreateForm;
 import helpers.*;
 
+@SuppressWarnings("serial")
 public class WelcomeView extends AbstractView {
 	public final static String TITLE = "Nos amis les chiens";
 	
@@ -29,64 +29,50 @@ public class WelcomeView extends AbstractView {
 	public static final String LABEL_NAME = "name";
 	public static final String LABEL_BREED = "breed";
 	
-	public static final String TAB_LABEL_WELCOME = "Acceuille";
-	public static final String TAB_LABEL_CLIENT = "Gestions des clients";
-	
-	private Collection<Client> clients;
+	public static final String LABEL_CLIENT_MANAGEMENT = "Gestions des clients";
+	public static final String LABEL_DOG_MANAGEMENT = "Gestions des chiens";
 	
 	public WelcomeView() {
 		super(TITLE);
-		
 		this.setSize(DEFAULT_SIZE);	
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		JExtDynamicTabbedPanel tabbedPanel = new JExtDynamicTabbedPanel();
-		tabbedPanel.addTab(TAB_LABEL_WELCOME, new WelcomeTabPanel());
-		tabbedPanel.addTab(TAB_LABEL_CLIENT, new ClientTabPanel());
-		this.add(tabbedPanel);
+		this.setLayout(new BorderLayout());
 		
+		this.add(new WelcomeSplashPanel(), BorderLayout.CENTER);
+		this.add(new ActionPanel(), BorderLayout.SOUTH);
 		
 		this.display();
 	}
 	
-	// Region sub components
-	
-	private class ClientTabPanel extends JPanel {
-		public ClientTabPanel() {
+	/**
+	 * Sub-component WelcomePanel
+	 */
+	private class WelcomeSplashPanel extends JPanel {
+		public WelcomeSplashPanel() {
+			super();
 			this.setLayout(new BorderLayout());
-			this.add(new ClientCreateForm());
-			this.add(new ClientView(clients));
+			this.add(new JLabel(WELCOME_MESSAGE, SwingConstants.CENTER), BorderLayout.NORTH);
+			this.add(new JExtImage(this, WELCOME_PICTURE), BorderLayout.CENTER);
 		}
 	}
 	
-	private class WelcomeTabPanel extends JPanel {
-		
-		public WelcomeTabPanel() {
-			this.setLayout(new BorderLayout());
-			this.add(new WelcomeSplashPanel(), BorderLayout.CENTER);
-			this.add(new ActionPanel(), BorderLayout.SOUTH);
-		}
-		
-		/**
-		 * Sub-component WelcomePanel
-		 */
-		private class WelcomeSplashPanel extends JPanel {
-			public WelcomeSplashPanel() {
-				super();
-				this.setLayout(new BorderLayout());
-				this.add(new JLabel(WELCOME_MESSAGE, SwingConstants.CENTER), BorderLayout.NORTH);
-				this.add(new JExtImage(this, WELCOME_PICTURE), BorderLayout.CENTER);
-			}
-		}
-		
-		/**
-		 * Sub-component ActionPanel
-		 */
-		private class ActionPanel extends JPanel {
-			public ActionPanel() {
-				super();
-				this.add(new JExtRouteInvokerButton(LABEL_ADD_DOG, DogController.class, Verb.Index));
-			}
+	/**
+	 * Sub-component ActionPanel
+	 */
+	private class ActionPanel extends JPanel {
+		public ActionPanel() {
+			super();
+			
+			this.add(new JExtButton(LABEL_DOG_MANAGEMENT, new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent e) { DogController.index(); }
+			}));
+			
+			this.add(new JExtButton(LABEL_CLIENT_MANAGEMENT, new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent e) { ClientController.index(); }
+			}));
 		}
 	}
 }

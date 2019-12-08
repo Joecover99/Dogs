@@ -36,6 +36,7 @@ public class ClientTablePanel extends JPanel {
 	 * @author benbe
 	 *
 	 */
+	@SuppressWarnings("serial")
 	private class NameFilterInputField extends JExtLabeledTextField {
 		public NameFilterInputField(ClientTable clientTable) {
 			super(LABEL_NAME_FILTER);

@@ -15,6 +15,7 @@ import helpers.JExtLabeledTextField;
 /**
  * A form shared by the client edit form and client creation form
  */
+@SuppressWarnings("serial")
 public abstract class ClientForm extends JPanel {
 	public final static String FIRSTNAME_LABEL = "Prénom";
 	public final static String LASTNAME_LABEL = "Nom";
@@ -22,7 +23,7 @@ public abstract class ClientForm extends JPanel {
 	public final static String SUBMIT_LABEL = "Enregistrer";
 	public final static String INVALID_INPUT_LABEL = "Veuillez remplire tous les champs.";
 	
-	public final static String SUCCESS_LABEL = "Les données on été enregistrer avec succès.";
+	public final static String SUCCESS_LABEL = "Les données on été enregistrer avec succès. Considérer fermer puis re-ouvrir la list des clients.";
 	
 	private final JExtLabeledTextField firstNameInput;
 	private final JExtLabeledTextField lastNameInput;

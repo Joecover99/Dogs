@@ -1,8 +1,6 @@
 package dogs;
 
-import abstracts.Controller.Verb;
 import dogs.controllers.ApplicationController;
-import helpers.ApplicationRouting;
 
 public class MainAppDogs {
 	
@@ -11,6 +9,7 @@ public class MainAppDogs {
 	}
 
 	public MainAppDogs() {
-		ApplicationRouting.invoke(ApplicationController.class, Verb.Index);
+		ApplicationSeeder.run();
+		ApplicationController.index();
 	}
 }

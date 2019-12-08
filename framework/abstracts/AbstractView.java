@@ -2,9 +2,10 @@ package abstracts;
 
 import javax.swing.JFrame;
 
-import interfaces.IView;
+@SuppressWarnings("serial")
+public abstract class AbstractView extends JFrame {
 
-public abstract class AbstractView extends JFrame implements IView {
+
 	public AbstractView() {
 		this(null);
 	}
@@ -14,6 +15,7 @@ public abstract class AbstractView extends JFrame implements IView {
 	
 	public void display() {
 		this.pack();
+		this.setResizable(false);
 		this.setVisible(true);
 	}
 }

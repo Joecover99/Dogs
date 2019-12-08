@@ -1,40 +1,45 @@
 package dogs.controllers;
 
-import java.util.Collection;
+import java.util.List;
 
-import abstracts.Controller;
 import abstracts.RepositoryManager;
+import dogs.models.Client;
 import dogs.models.Dog;
-import dogs.views.Dogs.DogCreateView;
+import dogs.models.Dog.Breed;
+import dogs.views.Dogs.DogEditView;
 import dogs.views.Dogs.DogIndexView;
 import interfaces.IRepository;
 
-public class DogController extends Controller<Dog> {
+public class DogController {
 
 	@SuppressWarnings("unchecked")
-	private IRepository<Dog> dogRepository = (IRepository<Dog>) RepositoryManager.getModelRepository(Dog.class);
+	private static IRepository<Dog> dogRepository = (IRepository<Dog>) RepositoryManager.getModelRepository(Dog.class);
+	@SuppressWarnings("unchecked")
+	private static IRepository<Dog> clientRepository = (IRepository<Dog>) RepositoryManager.getModelRepository(Client.class);
 	
-	/**
-	 * @since Exercice 4, step 7
-	 */
-	@Override
-	protected void index(Object arguments) {
-		Collection<Dog> dogList = this.dogRepository.select();
-		new DogIndexView(dogList);
+	public static void index() {
+		List<Dog> dogList = dogRepository.select();
+		Client[] clients = clientRepository.select().toArray(new Client[0]);
+		new DogIndexView(dogList, clients);
 	}
 	
-	/**
-	 * @since Exercice 4, step 3
-	 */
-	@Override
-	protected void create(Object arguments) { new DogCreateView(); }
+	public static void delete(Dog dog) {
+		dogRepository.delete(dog);
+	}
+
+	public static void store(String name, Breed breed, Client owner) {
+		new Dog(name, breed, owner).persist();
+	}
+
+	public static void update(final int id, final String name, final Breed breed) {
+		Dog dog = dogRepository.select(id);
+		dog.setName(name);
+		dog.setBreed(breed);
+		dog.save();
+	}
 	
-	/**
-	 * @since Exercice 4, step 5
-	 */
-	@Override
-	protected void store(Object arguments) {
-		Dog dog = (Dog) arguments;
-		dog.persist();
+	public static void edit(final int id) {
+		Dog dog = dogRepository.select(id);
+		new DogEditView(dog);
 	}
 }

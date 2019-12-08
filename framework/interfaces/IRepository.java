@@ -1,8 +1,6 @@
 package interfaces;
 
-import java.util.Comparator;
 import java.util.List;
-import java.util.function.Predicate;
 
 public interface IRepository<T extends IModel> {
 	public static final int NULL_ID = -1;
@@ -14,7 +12,4 @@ public interface IRepository<T extends IModel> {
 	
 	T select(int id);
 	List<T> select();
-	List<T> select(Predicate<T> filter);
-	List<T> select(Predicate<T> filter, Comparator<T> sortComparator);
-	List<T> select(Comparator<T> sortComparator);
 }

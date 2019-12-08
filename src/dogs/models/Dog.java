@@ -4,6 +4,8 @@ import abstracts.AbstractModel;
 
 public class Dog extends AbstractModel {
 	
+	public static final String NO_OWNER_NAME = "n/a";
+	
 	public static enum Breed {
 		AIDI,
 		PIT_BULL,
@@ -25,10 +27,11 @@ public class Dog extends AbstractModel {
 	private Breed breed;
 	private Client owner;
 	
-	public Dog(String name, Breed breed) {
+	public Dog(String name, Breed breed, Client owner) {
 		super();
 		this.name = name;
 		this.breed = breed;
+		this.owner = owner;
 	}
 	
 	public String getName() {
@@ -45,5 +48,13 @@ public class Dog extends AbstractModel {
 	
 	public void setBreed(Breed breed) {
 		this.breed = breed;
+	}
+
+	public Client getOwner() {
+		return this.owner;
+	}
+	
+	public String getOwnerName() {
+		return this.owner != null ? this.owner.toString() : NO_OWNER_NAME;
 	}
 }

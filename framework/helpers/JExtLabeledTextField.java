@@ -1,11 +1,9 @@
 package helpers;
 
-import java.awt.GridLayout;
-
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+@SuppressWarnings("serial")
 public class JExtLabeledTextField extends JPanel {
 	private static final int DEFAULT_FIELD_LENGTH = 25;
 	protected final JTextField field;
@@ -21,11 +19,9 @@ public class JExtLabeledTextField extends JPanel {
 	
 	public JExtLabeledTextField(final String label, final int fieldLength) {
 		super();
-		this.setLayout(new GridLayout(0, 2));
 		this.field = new JTextField(fieldLength);
 		
-		this.add(new JLabel(label));
-		this.add(field);
+		this.add(new JExtLabeledComponent(label, this.field));
 	}
 	
 	public String getText() {
