@@ -99,7 +99,7 @@ public class DogIndexView extends View {
 	private class SearchDogByIdForm extends SearchModelInstanceByIdPanel {
 		public final static String TITLE = "Rechercher un chien par no.";
 		public SearchDogByIdForm(int maxId) {
-			super(TITLE, maxId);
+			super(TITLE);
 		}
 
 		@Override

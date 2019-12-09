@@ -33,7 +33,7 @@ public class ClientIndexView extends View {
 	private class SearchClientByIdPane extends SearchModelInstanceByIdPanel {
 		public final static String TITLE = "Rechercher un client par no.";
 		
-		public SearchClientByIdPane(final int maxId) { super(TITLE, maxId); }
+		public SearchClientByIdPane(final int maxId) { super(TITLE); }
 		
 		@Override
 		protected void onSelect(int id) {

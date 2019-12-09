@@ -16,10 +16,10 @@ public abstract class SearchModelInstanceByIdPanel extends JPanel {
 	public final static String CONFIRM_BUTTON_LABEL = "Modifier";
 	public final static int DEFAULT_INDEX = 0;
 	
-	public SearchModelInstanceByIdPanel(final String panelTitle, final int maxId) {
+	public SearchModelInstanceByIdPanel(final String panelTitle) {
 		this.setBorder(BorderFactory.createTitledBorder(panelTitle));
 		
-		JSpinner idInput = new JSpinner(new SpinnerNumberModel(DEFAULT_INDEX, IRepository.STARTING_ID, maxId, 1));
+		JSpinner idInput = new JSpinner(new SpinnerNumberModel(DEFAULT_INDEX, IRepository.STARTING_ID, Integer.MAX_VALUE, 1));
 		this.add(idInput);
 		
 		this.add(new JExtButton(CONFIRM_BUTTON_LABEL, new ActionListener() {
