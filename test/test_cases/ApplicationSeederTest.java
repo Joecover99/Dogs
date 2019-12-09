@@ -13,7 +13,7 @@ import utils.Repository;
 class ApplicationSeederTest {
 	
 	@Test
-	void testRun() {
+	void run_add_stuff_to_database() {
 		// Assert
 		IRepository<Dog> dogRepository = new Repository<Dog>();
 		IRepository<IClient> clientRepository = new Repository<IClient>();
@@ -22,6 +22,9 @@ class ApplicationSeederTest {
 		ApplicationSeeder.run(dogRepository, clientRepository);
 		
 		// Assert
-		fail("Not yet implemented"); // TODO test that data are added to repository
+		assertDoesNotThrow(() -> {
+			clientRepository.select(0);
+			dogRepository.select(0);
+		});
 	}
 }
