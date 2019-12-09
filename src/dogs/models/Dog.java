@@ -1,5 +1,8 @@
 package dogs.models;
 
+import dogs.MainAppDogs;
+import exceptions.ModelNotPersistedException;
+import interfaces.IRepository;
 import utils.Model;
 
 @SuppressWarnings("serial")
@@ -26,15 +29,21 @@ public class Dog extends Model {
 
 	private String name;
 	private Breed breed;
-	private Client owner;
+	private transient IClient owner;
+	private int ownerId;
 	
-	public Dog(String name, Breed breed, Client owner) {
+	public Dog(String name, Breed breed, IClient owner) {
 		super();
 		this.name = name;
 		this.breed = breed;
-		this.owner = owner;
+		this.setOwner(owner);
 	}
 	
+	public void setOwner(IClient owner) {
+		this.owner = owner;
+		this.ownerId = owner != null ? owner.getId() : IRepository.NULL_ID;
+	}
+
 	public String getName() {
 		return name;
 	}
@@ -51,7 +60,14 @@ public class Dog extends Model {
 		this.breed = breed;
 	}
 
-	public Client getOwner() {
+	public IClient getOwner() {
+		if(this.owner == null && this.ownerId != IRepository.NULL_ID) {
+			try {
+				this.owner = MainAppDogs.clientRepository.select(this.ownerId);
+			} catch (ModelNotPersistedException e) {
+				this.ownerId =IRepository.NULL_ID;
+			}
+		}
 		return this.owner;
 	}
 	

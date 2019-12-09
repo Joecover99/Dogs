@@ -75,8 +75,9 @@ class DogTest {
 	void GIVEN_DogWithOwner_THEN_OwnerIsReturned() {
 		// Arrange
 		Dog dog = new Dog(ANY_FIRSTNAME, ANY_BREED, null);
+		
 		// Act
-		Client returnedOwner = dog.getOwner();
+		IClient returnedOwner = dog.getOwner();
 		
 		// Assert
 		Client ExpectedOwner = null;
