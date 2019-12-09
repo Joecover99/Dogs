@@ -81,7 +81,7 @@ class DogTest {
 		Client ExpectedOwner = null;
 		assertEquals(ExpectedOwner, returnedOwner);
 	}
-/*
+
 	@Test
 	void testGetOwnerName() {
 		// Arrange
@@ -96,6 +96,6 @@ class DogTest {
 		// Assert
 		Client ExpectedOwner = client;
 		assertEquals(ExpectedOwner, returnedOwner);
-	}*/
+	}
 
 }
