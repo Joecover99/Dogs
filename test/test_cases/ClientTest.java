@@ -15,45 +15,82 @@ class ClientTest {
 	public static Client createAnyClient() {
 		return new Client(ANY_FIRSTNAME, ANY_LASTNAME, ANY_PHONENUMBER);
 	}
-	
-	@Test
-	void testClient() {
-		fail("Not yet implemented");
-	}
 
 	@Test
 	void testGetFirstName() {
-		fail("Not yet implemented");
+		// Arrange
+		final String FIRSTNAMETEST = "Joe";
+		Client client = new Client(FIRSTNAMETEST, ANY_LASTNAME, ANY_PHONENUMBER);
+		// Act
+		String returnedFirstName = client.getFirstName();
+		
+		// Assert
+		String ExpectedName = "Joe";
+		assertEquals(ExpectedName, returnedFirstName);
 	}
 
 	@Test
 	void testGetLastName() {
-		fail("Not yet implemented");
+		// Arrange
+		final String LASTNAMETEST = "Marcus";
+		Client client = new Client(ANY_FIRSTNAME, LASTNAMETEST, ANY_PHONENUMBER);
+		// Act
+		String returnedFirstName = client.getLastName();
+		
+		// Assert
+		String ExpectedName = "Marcus";
+		assertEquals(ExpectedName, returnedFirstName);
 	}
 
 	@Test
 	void testGetPhoneNumber() {
-		fail("Not yet implemented");
+		// Arrange
+		final String PHONENUMBER = "418-831-3560";
+		Client client = new Client(ANY_FIRSTNAME, ANY_LASTNAME, PHONENUMBER);
+		// Act
+		String returnedFirstName = client.getPhoneNumber();
+		
+		// Assert
+		String ExpectedPhoneNumber = "418-831-3560";
+		assertEquals(ExpectedPhoneNumber, returnedFirstName);
 	}
 
 	@Test
 	void testSetFirstName() {
-		fail("Not yet implemented");
+		// Arrange
+		final String FIRSTNAMETEST = "Joe";
+		Client client = new Client(FIRSTNAMETEST, ANY_LASTNAME, ANY_PHONENUMBER);
+		// Act
+		client.setFirstName(FIRSTNAMETEST);
+		
+		String returnedFirstName = client.getFirstName();
+		// Assert
+		assertEquals(FIRSTNAMETEST, returnedFirstName);
 	}
 
 	@Test
 	void testSetName() {
-		fail("Not yet implemented");
+		// Arrange
+		final String LASTNAMETEST = "Marcus";
+		Client client = new Client(ANY_FIRSTNAME, LASTNAMETEST, ANY_PHONENUMBER);
+		// Act
+		client.setName(LASTNAMETEST);
+		
+		// Assert
+		String returnedLastName = client.getLastName();
+		assertEquals(LASTNAMETEST, returnedLastName);
 	}
 
 	@Test
 	void testSetPhoneNumber() {
-		fail("Not yet implemented");
+		// Arrange
+		final String PHONENUMBER = "418-831-3560";
+		Client client = new Client(ANY_FIRSTNAME, ANY_LASTNAME, PHONENUMBER);
+		// Act
+		client.setPhoneNumber(PHONENUMBER);
+		
+		// Assert
+		String returnedPhoneNumber = client.getPhoneNumber();
+		assertEquals(PHONENUMBER, returnedPhoneNumber);
 	}
-
-	@Test
-	void testToString() {
-		fail("Not yet implemented");
-	}
-
 }
