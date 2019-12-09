@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 import dogs.models.Client;
 import dogs.models.Dog;
 import dogs.models.Dog.Breed;
+import dogs.models.IClient;
 
 class DogTest {
 
@@ -18,7 +19,7 @@ class DogTest {
 	}
 
 	@Test
-	void testGetName() {
+	void GIVEN_DogWithAName_THEN_NameIsReturned() {
 		// Arrange
 		final String FIRSTNAMETEST = "Joe";
 		Dog dog = new Dog(FIRSTNAMETEST, ANY_BREED, null);
@@ -31,7 +32,7 @@ class DogTest {
 	}
 
 	@Test
-	void testSetName() {
+	void GIVEN_SetName_THEN_NameIsReturedWhenGetNameIsCalled() {
 		// Arrange
 		final String FIRSTNAMETEST = "Joe";
 		Dog dog = new Dog(FIRSTNAMETEST, ANY_BREED, null);
@@ -44,7 +45,7 @@ class DogTest {
 	}
 
 	@Test
-	void testGetBreed() {
+	void GIVEN_DogWithBreed_THEN_BreedIsReturned() {
 		// Arrange
 		final Breed BREED = Breed.BOXER;
 		Dog dog = new Dog(ANY_FIRSTNAME, BREED, null);
@@ -58,7 +59,7 @@ class DogTest {
 
 
 	@Test
-	void testSetBreed() {
+	void GIVEN_SetBreed_THEN_BreedIsReturedWhenGetBreedIsCalled() {
 		// Arrange
 		final Breed BREED = Breed.BOXER;
 		Dog dog = new Dog(ANY_FIRSTNAME, BREED, null);
@@ -71,7 +72,7 @@ class DogTest {
 	}
 
 	@Test
-	void testGetOwner() {
+	void GIVEN_DogWithOwner_THEN_OwnerIsReturned() {
 		// Arrange
 		Dog dog = new Dog(ANY_FIRSTNAME, ANY_BREED, null);
 		// Act
@@ -83,19 +84,28 @@ class DogTest {
 	}
 
 	@Test
-	void testGetOwnerName() {
-		// Arrange
-		final String CLIENT_NAME = "Star";
-		final String LASTNAME = "bb";
-		final String PHONENUMBER = "418-831-3560";
-		Client client = new Client(CLIENT_NAME, LASTNAME, PHONENUMBER);
-		Dog dog = new Dog(ANY_FIRSTNAME, ANY_BREED, client);
-		// Act
-		String returnedOwner = dog.getOwnerName();
-		
-		// Assert
-		Client ExpectedOwner = client;
-		assertEquals(ExpectedOwner, returnedOwner);
+	void GIVEN_OwnerName_RETURNS_OWNER_NAME() {
+        // Arrange
+        IClient client = ClientTest.createAnyClient();
+        Dog dog = new Dog(ANY_FIRSTNAME, ANY_BREED, (Client) client);
+        
+        // Act
+        String returnedName = dog.getOwnerName();
+        
+        // Assert
+        String expectedString = client.toString();
+        assertEquals(expectedString, returnedName);
 	}
 
+	@Test
+    void GIVEN_GetOwnerName_WHEN_no_owner_RETURNS_NO_OWNER_NAME() {
+        // Arrange
+        Dog dog = new Dog(ANY_FIRSTNAME, ANY_BREED, null);
+        
+        // Act
+        String returnedName = dog.getOwnerName();
+        
+        // Assert
+        assertEquals(Dog.NO_OWNER_NAME, returnedName);
+    }
 }

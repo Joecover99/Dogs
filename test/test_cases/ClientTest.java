@@ -17,7 +17,7 @@ class ClientTest {
 	}
 
 	@Test
-	void testGetFirstName() {
+	void GIVEN_ClientWithAFirstName_THEN_ClienIsReturned() {
 		// Arrange
 		final String FIRSTNAMETEST = "Joe";
 		Client client = new Client(FIRSTNAMETEST, ANY_LASTNAME, ANY_PHONENUMBER);
@@ -30,7 +30,7 @@ class ClientTest {
 	}
 
 	@Test
-	void testGetLastName() {
+	void GIVEN_ClientWithALastName_THEN_ClienIsReturned() {
 		// Arrange
 		final String LASTNAMETEST = "Marcus";
 		Client client = new Client(ANY_FIRSTNAME, LASTNAMETEST, ANY_PHONENUMBER);
@@ -43,7 +43,7 @@ class ClientTest {
 	}
 
 	@Test
-	void testGetPhoneNumber() {
+	void GIVEN_ClientWithAPhoneNumber_THEN_ClienIsReturned() {
 		// Arrange
 		final String PHONENUMBER = "418-831-3560";
 		Client client = new Client(ANY_FIRSTNAME, ANY_LASTNAME, PHONENUMBER);
@@ -56,7 +56,7 @@ class ClientTest {
 	}
 
 	@Test
-	void testSetFirstName() {
+	void GIVEN_SetFirstName_THEN_ClienIsReturnedWithAGetFirstName() {
 		// Arrange
 		final String FIRSTNAMETEST = "Joe";
 		Client client = new Client(FIRSTNAMETEST, ANY_LASTNAME, ANY_PHONENUMBER);
@@ -69,7 +69,7 @@ class ClientTest {
 	}
 
 	@Test
-	void testSetName() {
+	void GIVEN_SetName_THEN_ClienIsReturnedWithAGetName() {
 		// Arrange
 		final String LASTNAMETEST = "Marcus";
 		Client client = new Client(ANY_FIRSTNAME, LASTNAMETEST, ANY_PHONENUMBER);
@@ -82,7 +82,7 @@ class ClientTest {
 	}
 
 	@Test
-	void testSetPhoneNumber() {
+	void GIVEN_SetPhoneNumber_THEN_ClienIsReturnedWithAGetPhoneNumber() {
 		// Arrange
 		final String PHONENUMBER = "418-831-3560";
 		Client client = new Client(ANY_FIRSTNAME, ANY_LASTNAME, PHONENUMBER);
